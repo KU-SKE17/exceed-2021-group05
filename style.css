@@ -123,3 +123,39 @@ div.chart {
     height: 25px;
     background-color: crimson;
 }
+
+
+
+/*  setting.html */
+
+.page-body {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+
+
+div.title {
+    font-size: 160%;
+    width: 100%;
+    height: fit-content;
+    font-weight: bold;
+}
+input.input-text {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+input.save {
+    color: white;
+    border-style: none;
+    background-color: rgb(15, 201, 136);
+    width: auto;
+    height: 30px;
+    border-radius: 3px;
+}
+
+span.live {
+    color: crimson;
+    font-weight: normal;
+}

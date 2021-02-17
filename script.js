@@ -112,3 +112,6 @@ form.addEventListener("submit", event => {
     var climatize = setting_climatize.value;
     updateSetting(rname, owner, warning, humidity, climatize);
 })
+
+
+location.href = './setting.html'
