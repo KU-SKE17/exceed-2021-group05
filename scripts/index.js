@@ -57,32 +57,32 @@ function update() {
     document.getElementById("room-name").innerHTML = `${myRoom.roomName}`;
 
 
-    var room = GenerateData();
+    var now = GenerateData();
 
-    tempElement.innerHTML = `${room.temp}°C`;
-    document.getElementById('air-quality').innerHTML = room.quality;
+    tempElement.innerHTML = `${now.temp}°C`;
+    document.getElementById('air-quality').innerHTML = now.quality;
 
 
-    if (room.LPG > myRoom.warningLevel.LPG) {
+    if (now.LPG > myRoom.warningLevel.LPG) {
         // color red (crimson)
         document.getElementById('lpg-chart').style.width = `100%`;
         document.getElementById('lpg-chart').style.backgroundColor = 'crimson';
     }
     else {   
-        document.getElementById('lpg-chart').style.width = `${room.LPG / 10}%`;
+        document.getElementById('lpg-chart').style.width = `${now.LPG / 10}%`;
         document.getElementById('lpg-chart').style.backgroundColor = 'rgb(17, 200, 237)';
     }
 
 
 
-    if (room.CO > myRoom.warningLevel.CO) {
+    if (now.CO > myRoom.warningLevel.CO) {
         
         // color red (crimson)
-        document.getElementById('co-chart').style.width = `${room.CO / 10}%`;
+        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
         document.getElementById('co-chart').style.backgroundColor = 'crimson';
     }
     else {   
-        document.getElementById('co-chart').style.width = `${room.CO / 10}%`;
+        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
         document.getElementById('co-chart').style.backgroundColor = 'rgb(242, 2, 78)';
     }
 
@@ -90,13 +90,13 @@ function update() {
 
 
 
-    if (room.CH4 > myRoom.warningLevel.CH4) {
+    if (now.CH4 > myRoom.warningLevel.CH4) {
         // color red (crimson)
         document.getElementById('ch4-chart').style.width = `100%`;
         document.getElementById('ch4-chart').style.backgroundColor = 'crimson';
     }
     else {
-        document.getElementById('ch4-chart').style.width = `${room.CH4 / 10}%`;
+        document.getElementById('ch4-chart').style.width = `${now.CH4 / 10}%`;
         document.getElementById('ch4-chart').style.backgroundColor = 'rgb(232, 178, 0)';
     }
 
@@ -104,13 +104,13 @@ function update() {
 
 
 
-    if (room.H2 > myRoom.warningLevel.H2) {
+    if (now.H2 > myRoom.warningLevel.H2) {
         // color red (crimson)
         document.getElementById('h2-chart').style.width = `100%`;
         document.getElementById('h2-chart').style.backgroundColor = 'crimson';
     }
     else {
-        document.getElementById('h2-chart').style.width = `${room.H2 / 10}%`;
+        document.getElementById('h2-chart').style.width = `${now.H2 / 10}%`;
         document.getElementById('h2-chart').style.backgroundColor = 'rgb(0, 255, 145)';
     }
 

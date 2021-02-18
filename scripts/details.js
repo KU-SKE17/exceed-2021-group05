@@ -90,69 +90,69 @@ function update() {
 
     var myRoom = new Room("Prayuth's Bedroom", "Prayuth", { "LPG": 1000, "CO": 100, "CH4": 1000, "H2": 1000 }, false);
 
-    var room = GenerateData();
+    var now = GenerateData();
 
     roomElement.innerHTML = `${myRoom.roomName}`;
-    tempElement.innerHTML = `${room.temp}°C`;
-    humElement.innerHTML = `${room.humidity}%`;
+    tempElement.innerHTML = `${now.temp}°C`;
+    humElement.innerHTML = `${now.humidity}%`;
 
-    if (room.LPG > myRoom.warningLevel.LPG) {
+    if (now.LPG > myRoom.warningLevel.LPG) {
         // color red (crimson)
         document.getElementById('lpg-chart').style.width = `100%`;
         document.getElementById('lpg-chart').style.backgroundColor = 'crimson';
-        document.getElementById('lpg-amount').innerHTML = `${room.LPG} ppm (Danger!)`;
+        document.getElementById('lpg-amount').innerHTML = `${now.LPG} ppm (Danger!)`;
     }
     else {   
-        document.getElementById('lpg-chart').style.width = `${room.LPG / 10}%`;
+        document.getElementById('lpg-chart').style.width = `${now.LPG / 10}%`;
         document.getElementById('lpg-chart').style.backgroundColor = 'rgb(17, 200, 237)';
-        document.getElementById('lpg-amount').innerHTML = `${room.LPG} ppm`;
+        document.getElementById('lpg-amount').innerHTML = `${now.LPG} ppm`;
     }
 
 
 
-    if (room.CO > myRoom.warningLevel.CO) {
+    if (now.CO > myRoom.warningLevel.CO) {
         
         // color red (crimson)
-        document.getElementById('co-chart').style.width = `${room.CO / 10}%`;
+        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
         document.getElementById('co-chart').style.backgroundColor = 'crimson';
-        document.getElementById('co-amount').innerHTML = `${room.CO} ppm (Danger!)`;
+        document.getElementById('co-amount').innerHTML = `${now.CO} ppm (Danger!)`;
     }
     else {   
-        document.getElementById('co-chart').style.width = `${room.CO / 10}%`;
+        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
         document.getElementById('co-chart').style.backgroundColor = 'rgb(242, 2, 78)';
-        document.getElementById('co-amount').innerHTML = `${room.CO} ppm`;
+        document.getElementById('co-amount').innerHTML = `${now.CO} ppm`;
     }
 
 
 
 
 
-    if (room.CH4 > myRoom.warningLevel.CH4) {
+    if (now.CH4 > myRoom.warningLevel.CH4) {
         // color red (crimson)
         document.getElementById('ch4-chart').style.width = `100%`;
         document.getElementById('ch4-chart').style.backgroundColor = 'crimson';
-        document.getElementById('ch4-amount').innerHTML = `${room.CH4} ppm (Danger!)`;
+        document.getElementById('ch4-amount').innerHTML = `${now.CH4} ppm (Danger!)`;
     }
     else {
-        document.getElementById('ch4-chart').style.width = `${room.CH4 / 10}%`;
+        document.getElementById('ch4-chart').style.width = `${now.CH4 / 10}%`;
         document.getElementById('ch4-chart').style.backgroundColor = 'rgb(232, 178, 0)';
-        document.getElementById('ch4-amount').innerHTML = `${room.CH4} ppm`;
+        document.getElementById('ch4-amount').innerHTML = `${now.CH4} ppm`;
     }
 
 
 
 
 
-    if (room.H2 > myRoom.warningLevel.H2) {
+    if (now.H2 > myRoom.warningLevel.H2) {
         // color red (crimson)
         document.getElementById('h2-chart').style.width = `100%`;
         document.getElementById('h2-chart').style.backgroundColor = 'crimson';
-        document.getElementById('h2-amount').innerHTML = `${room.H2} ppm (Danger!)`;
+        document.getElementById('h2-amount').innerHTML = `${now.H2} ppm (Danger!)`;
     }
     else {
-        document.getElementById('h2-chart').style.width = `${room.H2 / 10}%`;
+        document.getElementById('h2-chart').style.width = `${now.H2 / 10}%`;
         document.getElementById('h2-chart').style.backgroundColor = 'rgb(0, 255, 145)';
-        document.getElementById('h2-amount').innerHTML = `${room.H2} ppm`;
+        document.getElementById('h2-amount').innerHTML = `${now.H2} ppm`;
     }
 
 
