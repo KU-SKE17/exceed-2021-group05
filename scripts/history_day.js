@@ -62,14 +62,17 @@ window.onload = function () {
         chart.render();
     }
     
-    //update time
+    //update time 1 sec
     var updateInterval = 1000;
     
     var time = new Date();
     var now = time.getHours();
     
     //set sec to day
-    var index_to_day = (24-now)*3600000;
+    //var index_to_day = (24-now-1)*3600000;
+    //demo
+    var index_to_day = 6;
+    console.log(index_to_day);
     var ct = 0;
     function add_new(arr_temp, arr_index, yValue, dps_arr, check_time)
     {
