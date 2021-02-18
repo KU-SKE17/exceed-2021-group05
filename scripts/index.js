@@ -51,6 +51,19 @@ const AirQuality = {
     }
 }
 
+function selectAirQuality(quality) {
+    switch (where) {
+        case "good":
+            return AirQuality.good;
+        case "moderate":
+            return AirQuality.moderate;
+        case "unhealthy":
+            return AirQuality.unhealthy;
+        case "danger":
+            return AirQuality.danger;
+    }
+}
+
 // function getRandomInt(min, max) {
 //     min = Math.ceil(min);
 //     max = Math.floor(max);
@@ -137,6 +150,7 @@ function getData(info) {
 
     var now = new Now(
         info.timestamp * 1000,
+        // selectAirQuality(info.quality),
         AirQuality.danger,
         info.temperature,
         info.lpg_history[0],
