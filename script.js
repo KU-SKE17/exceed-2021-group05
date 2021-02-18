@@ -1,28 +1,11 @@
 // current room
 let current_room;
-// const current_room_name = document.getElementById("room_name");
 
 // current data
 let current_data;
-// const current_time = document.getElementById("current_time");
-// const current_quality = document.getElementById("current_quality");
-// const current_temperature = document.getElementById("current_temperature");
-// const current_LPG = document.getElementById("current_LPG");
-// const current_CO = document.getElementById("current_CO");
-// const current_CH4 = document.getElementById("current_CH4");
-// const current_H2 = document.getElementById("current_H2");
-// const current_humidity = document.getElementById("current_humidity");
 
 // setting
 let current_warning;
-const setting_room_name = document.getElementById("setting_name");
-const setting_owner = document.getElementById("setting_owner");
-const setting_LPG = document.getElementById("setting_LPG");
-const setting_CO = document.getElementById("setting_CO");
-const setting_CH4 = document.getElementById("setting_CH4");
-const setting_H2 = document.getElementById("setting_H2");
-const setting_humidity = document.getElementById("setting_humidity");
-const setting_climatize = document.getElementById("setting_climatize");
 
 
 
@@ -63,7 +46,7 @@ function getData(info) {
         //"auto_climatize": info.auto_climatize,
         "room_warning": {
             "LPG": info.lpg_warning,
-            "CO": info.co2_warning,
+            "CO": info.co_warning,
             "CH4": info.ch4_warning,
             "H2": info.h2_warning,
         },
@@ -84,7 +67,7 @@ function getData(info) {
         "quality": info.quality,
         "temperature": info.tempearature,
         "LPG": info.lpg_now,
-        "CO": info.co2_now,
+        "CO": info.co_now,
         "CH4": info.ch4_now,
         "H2": info.h2_now,
         "humidity": info.humidity
@@ -92,7 +75,7 @@ function getData(info) {
 }
 
 // TODO: add default id
-function loadData(room_name) {
+function loadData() {
     // var room_id = current_room.room_id ? current_room.room_id : 'default';
     var room_id = "kitchen";
     var url = "http://158.108.182.6:3000/find?room=".concat(room_id);
@@ -109,42 +92,6 @@ function loadData(room_name) {
             })
         );
 }
-
-// function updateUI() {
-//     current_time.innerHTML = current_data["current_time"];
-// }
-
-// TODO: add url
-function updateSetting(new_setting) {
-    var url = "";
-    fetch(url, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(new_setting),
-    }).then((response) => console.log(response));
-}
-/*
-// TODO: add names
-form.addEventListener("submit", event => {
-    event.preventDefault();
-    var new_setting = {
-        '': setting_room_name.value,
-        '': setting_owner.value,
-        '': setting_LPG.value,
-        '': setting_CO.value,
-        '': setting_CH4.value,
-        '': setting_H2.value,
-        '': setting_humidity.value,
-        '': setting_climatize.value
-    }
-    updateSetting(new_setting);
-})
-
-location.href = './setting.html';
-*/
-
-
-
 
 // Functions for index.html //
 
