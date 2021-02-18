@@ -29,28 +29,9 @@ function getData(info) {
         "room_id": info.room_id,
         "room_name": info.room_name,
         "room_owner": info.room_owner,
-        "warning_level": info.warning_level,
         "auto_climatize": info.auto_climatize,
     };
-}
-
-// TODO: add url, del param
-function loadRoom(room_name) {
-    var url = "";
-    fetch(url, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    })
-        .then((response) => response.json())
-        .then((datas) =>
-            datas.result.forEach((data) => {
-                getRoom(data);
-                // console.log(data);
-            })
-        );
-}
-
-function getCurrentData(info) {
+    current_warning = {
         // "quality": info.quality,
         // "temperature": info.temperature,
         // "LPG": info.LPG,
