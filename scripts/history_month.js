@@ -9,7 +9,7 @@ window.onload = function ()
     var chart = new CanvasJS.Chart("chartContainer", {
         zoomEnabled: true,
         title: {text: "air quality"},
-        axisX: {title: "chart updates every 1 month"},
+        axisX: {title: "Demo chart updates every 1 month"},
         axisY:{posfix: "ppm"}, 
         toolTip: {shared: true},
         legend: {cursor:"pointer",verticalAlign: "top",fontSize: 22,fontColor: "dimGrey",itemclick : toggleDataSeries},
