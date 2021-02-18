@@ -14,6 +14,7 @@ let current_data;
 // const current_humidity = document.getElementById("current_humidity");
 
 // setting
+let current_warning;
 const setting_room_name = document.getElementById("setting_name");
 const setting_owner = document.getElementById("setting_owner");
 const setting_LPG = document.getElementById("setting_LPG");
@@ -23,8 +24,9 @@ const setting_H2 = document.getElementById("setting_H2");
 const setting_humidity = document.getElementById("setting_humidity");
 const setting_climatize = document.getElementById("setting_climatize");
 
-function getRoom(info) {
+function getData(info) {
     current_room = {
+        "room_id": info.room_id,
         "room_name": info.room_name,
         "room_owner": info.room_owner,
         "warning_level": info.warning_level,
@@ -49,6 +51,14 @@ function loadRoom(room_name) {
 }
 
 function getCurrentData(info) {
+        // "quality": info.quality,
+        // "temperature": info.temperature,
+        // "LPG": info.LPG,
+        // "CO": info.CO,
+        // "CH4": info.CH4,
+        // "H2": info.H2,
+        // "humidity": info.humidity
+    }
     current_data = {
         "current_time": info.timestamp * 1000,
         "quality": info.quality,
@@ -61,9 +71,11 @@ function getCurrentData(info) {
     };
 }
 
-// TODO: add url, del param
-function loadCurrentData(room_name) {
-    var url = "";
+// TODO: add default id
+function loadData(room_name) {
+    // var room_id = current_room.room_id ? current_room.room_id : 'default';
+    var room_id = current_room.room_id;
+    var url = "http://158.108.182.6:3001/find?room=".concat(room_id);
     fetch(url, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
@@ -71,8 +83,7 @@ function loadCurrentData(room_name) {
         .then((response) => response.json())
         .then((datas) =>
             datas.result.forEach((data) => {
-                getCurrentData(data);
-                // console.log(data);
+                getData(data);
             })
         );
 }
@@ -81,15 +92,8 @@ function loadCurrentData(room_name) {
 //     current_time.innerHTML = current_data["current_time"];
 // }
 
-// TODO: add names, url
-function updateSetting(rname, owner, warning, humidity, climatize) {
-    var new_setting = {
-        '': rname,
-        '': owner,
-        '': warning,
-        '': humidity,
-        '': climatize
-    }
+// TODO: add url
+function updateSetting(new_setting) {
     var url = "";
     fetch(url, {
         method: "PUT",
@@ -98,20 +102,20 @@ function updateSetting(rname, owner, warning, humidity, climatize) {
     }).then((response) => console.log(response));
 }
 
+// TODO: add names
 form.addEventListener("submit", event => {
     event.preventDefault();
-    var rname = setting_room_name.value;
-    var owner = setting_owner.value;
-    var warning = {
-        "LPG": setting_LPG.value,
-        "CO": setting_CO.value,
-        "CH4": setting_CH4.value,
-        "H2": setting_H2.value,
-    };
-    var humidity = setting_humidity.value;
-    var climatize = setting_climatize.value;
-    updateSetting(rname, owner, warning, humidity, climatize);
+    var new_setting = {
+        '': setting_room_name.value,
+        '': setting_owner.value,
+        '': setting_LPG.value,
+        '': setting_CO.value,
+        '': setting_CH4.value,
+        '': setting_H2.value,
+        '': setting_humidity.value,
+        '': setting_climatize.value
+    }
+    updateSetting(new_setting);
 })
-
 
 location.href = './setting.html'
