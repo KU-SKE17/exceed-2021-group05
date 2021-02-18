@@ -26,6 +26,34 @@ const Now = class {
 const tempElement = document.getElementById('temp');
 
 
+const AirQuality = {
+    "good":  {
+        "title": "Good",
+        "description": "Overall air quality in you room is good.",
+        "titleColor": "rgb(0, 197, 168)",       // green
+        "descriptionColor": "rgb(197, 232, 227)",
+    },
+    "moderate": {
+        "title": "Moderate",
+        "description": "Air quality is quite acceptable.",
+        "titleColor": "rgb(252, 211, 3)",       // yellow
+        "descriptionColor": "rgb(247, 237, 186)",
+    },
+    "unhealthy": {
+        "title": "Unhealthy",
+        "description": "This may cause some effects if stay for long time.",
+        "titleColor": "rgb(235, 133, 16)",       // orange
+        "descriptionColor": "rgb(240, 204, 163)",
+    },
+    "danger": {
+        "title": "Danger!",
+        "description": "Your room is not suitable for living!",
+        "titleColor": "crimson",       // red (crimson)
+        "descriptionColor": "rgb(242, 182, 184)",
+    }
+}
+
+
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -36,7 +64,7 @@ function getRandomInt(min, max) {
 function GenerateData() {
     var data = new Now(
         Date.now() * 1000,
-        "Bad",
+        AirQuality.danger, // edit here for new aq, AirQuality.good , AirQuality.moderate , AirQuality.unhealty , AirQuality.danger
         getRandomInt(21,32),
         getRandomInt(500, 1020),
         getRandomInt(10, 200),
@@ -60,7 +88,10 @@ function update() {
     var now = GenerateData();
 
     tempElement.innerHTML = `${now.temp}°C`;
-    document.getElementById('air-quality').innerHTML = now.quality;
+    document.getElementById('air-quality').innerHTML = now.quality.title;
+    document.getElementById('air-quality-box').style.backgroundColor = now.quality.titleColor;
+    document.getElementById('air-quality-description').innerHTML = now.quality.description;
+    document.getElementById('air-quality-description-box').style.backgroundColor = now.quality.descriptionColor;
 
 
     if (now.LPG > myRoom.warningLevel.LPG) {
