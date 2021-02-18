@@ -9,7 +9,7 @@
     <title>Details</title>
 </head>
 
-<body>
+<body onload="init()">
     <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="padding-left: 30px;">
         <a class="time" href="./index.html" id="time">01:12 AM</a>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -36,23 +36,82 @@
         <hr>
 
         <br><br>
-        <table>
-            <tr>
-                <td>
-                    <div class="title">Temperature</div>
-                </td>
-                <td>
-                    <div class="details-temp"></div>
-                </td>
-            </tr>
-        </table>
-        
+        <p id="roomname" style="font-size: 130%; font-weight: lighter;">Prayuth</p> <br>
+        <div class="title">Temperature: <span class="details-temp" id="details-temp">33°C</span></div>
+        <br>
+        <div class="title">Humidity: <span class="details-hum" id="details-hum">12%</span></div>
+
+        <br><br><br>
+        <div class="overview-chart">
+            <table style="width: 100%; height: 100%; ">
+                <tr>
+                    <td style="width: 20%;">
+                        <p class="overview-gas-title">LPG</p>
+                    </td>
+                    <td style="width: 50%;">
+                        <div class="chart" style="background-color: rgb(17, 200, 237);" id="lpg-chart"></div>
+                    </td>
+                    <td style="width: 30%;">
+                        <p class="overview-gas-amount" id="lpg-amount" style="color: rgb(17, 200, 237);">20 ppm</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="overview-gas-title">CO</p>
+                    </td>
+                    <td>
+                        <div class="chart" style="background-color: rgb(242, 2, 78);" id="co-chart"></div>
+                    </td>
+                    <td>
+                        <p class="overview-gas-amount" id="co-amount" style="color: rgb(242, 2, 78);">20 ppm</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="overview-gas-title">CH4</p> 
+                    </td>
+                    <td>
+                        <div class="chart" style="background-color: rgb(232, 178, 0);" id="ch4-chart"></div>
+                    </td>
+                    <td>
+                        <p class="overview-gas-amount" id="ch4-amount" style="color: rgb(232, 178, 0);">20 ppm</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p class="overview-gas-title">H2</p>
+                    </td>
+                    <td>
+                        <div class="chart" style="background-color: rgb(0, 255, 145);" id="h2-chart"></div>
+                    </td>
+                    <td>
+                        <p class="overview-gas-amount" id="h2-amount" style="color: rgb(0, 255, 145);">20 ppm</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-
-
-
-
+    <div>test chart animation</div>
+    <button onclick="changeWidth()" style="width: fit-content; height: 40px;">Click here to animate</button>
+    <button onclick="reset()" style="width: fit-content; height: 40px;">reset</button>
 
 </body>
+
+
+<script>
+    function changeWidth() {
+        document.getElementById('h2-chart').style.width = '40%';
+        document.getElementById('co-chart').style.width = '100%';
+        document.getElementById('ch4-chart').style.width = '30%';
+        document.getElementById('lpg-chart').style.width = '70%';
+    }
+    function reset() {
+        document.getElementById('h2-chart').style.width = '60%';
+        document.getElementById('co-chart').style.width = '60%';
+        document.getElementById('ch4-chart').style.width = '60%';
+        document.getElementById('lpg-chart').style.width = '60%';
+    }
+</script>
+<script src="./scripts/details.js"></script>
 
 </html>

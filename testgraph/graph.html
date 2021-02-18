@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () 
+{
+var chart = new CanvasJS.Chart("chartContainer", 
+{
+ title: {text: "air quality"},
+ axisY: {title: "air", includeZero: true, suffix: " (ppm)"},
+ data: 
+    [{
+  type: "column", 
+  yValueFormatString: "#,### (ppm)",
+  indexLabel: "{y}",
+  dataPoints: 
+        [
+   { label: "LPG", y: 1099 },
+   { label: "CO2", y: 500 },
+   { label: "CH4", y: 810 },
+   { label: "H2", y: 135 }
+  ]
+ }]
+});
+
+function updateChart() 
+{
+ var dangerColor, deltaY, yVal;
+ var dps = chart.options.data[0].dataPoints;
+
+    //LPG
+    deltaY = Math.round(2 + Math.random() *(-2-2));
+    yVal = deltaY + dps[0].y > 0 ? dps[0].y + deltaY : 0;
+    dangerColor = yVal > 1000 ? "#FF2500" : yVal >= 800 ? "#FF6000" : yVal < 800 ? "#6B8E23 " : null;
+    dps[0] = {label: "LPG" , y: yVal, color: dangerColor};
+
+    //CO2
+ deltaY = Math.round(2 + Math.random() *(-2-2));
+    yVal = deltaY + dps[1].y > 0 ? dps[1].y + deltaY : 0;
+    dangerColor = yVal > 1000 ? "#FF2500" : yVal >= 800 ? "#FF6000" : yVal < 800 ? "#6B8E23 " : null;
+    dps[1] = {label: "CO2" , y: yVal, color: dangerColor};
+
+    //CH4
+    deltaY = Math.round(2 + Math.random() *(-2-2));
+    yVal = deltaY + dps[2].y > 0 ? dps[2].y + deltaY : 0;
+    dangerColor = yVal > 1000 ? "#FF2500" : yVal >= 800 ? "#FF6000" : yVal < 800 ? "#6B8E23 " : null;
+    dps[2] = {label: "CH4" , y: yVal, color: dangerColor};
+
+    //H2
+    deltaY = Math.round(2 + Math.random() *(-2-2));
+    yVal = deltaY + dps[3].y > 0 ? dps[3].y + deltaY : 0;
+    dangerColor = yVal > 1000 ? "#FF2500" : yVal >= 800 ? "#FF6000" : yVal < 800 ? "#6B8E23 " : null;
+    dps[3] = {label: "H2" , y: yVal, color: dangerColor};
+
+
+ chart.options.data[0].dataPoints = dps; 
+ chart.render();
+};
+updateChart();
+setInterval(function() {updateChart()}, 500);
+
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 75%; margin: 0 auto; display: block;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
