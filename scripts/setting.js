@@ -46,28 +46,25 @@ function loadSetting(el) {
     fillData(value)
 }
 
-// TODO: add url
-function updateSetting(new_setting) {
-    var url = "";
-    fetch(url, {
+function updateSetting(room) {
+    fetch("http://158.108.182.6:3000/set_warning?room=".concat(room), {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(new_setting),
-    }).then((response) => console.log(response));
+        body: JSON.stringify({
+            "room_owner": setting_owner.value,
+            "lpg_warning": setting_LPG.value,
+            "co_warning": setting_CO.value,
+            "ch4_warning": setting_CH4.value,
+            "h2_warning": setting_H2.value,
+        }),
+    }).then((response) => response.json())
 }
 
 function sendForm() {
     if (setting_owner.value && setting_LPG.value && setting_CO.value && setting_CH4.value && setting_H2.value) {
+        updateSetting(roomSelector.value);
         alert("Setting Successfully");
-        var new_setting = {
-            room: roomSelector.value,
-            room_owner: setting_owner.value,
-            lpg_warning: setting_LPG.value,
-            co_warning: setting_CO.value,
-            ch4_warning: setting_CH4.value,
-            h2_warning: setting_H2.value,
-        }
-        updateSetting(new_setting);
+        location.reload();
     } else {
         alert("Setting Failure");
     }

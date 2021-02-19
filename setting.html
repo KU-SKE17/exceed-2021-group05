@@ -50,7 +50,7 @@
     <br><br><br><br>
     <div class="page-body">
 
-        <form onsubmit="sendForm()" id="setting-form">
+        <form id="setting-form">
             <div class="title">General</div>
             <hr>
 
@@ -64,7 +64,7 @@
             <input id="owner_name" type="text" name="owner-name" class="input-text">
             <br>
 
-            <br><br><br><br><br>
+            <br><br><br><br>
             <div class="title">Notification</div>
             <hr>
             <br>
@@ -112,7 +112,7 @@
                 reach the warning level.
             </div> -->
             <br><br>
-            <input type="submit" value="save" class="save">
+            <input onclick="sendForm()" type="button" value="save" class="save">
 
         </form>
         <div style="margin-bottom: 200px;"></div>
