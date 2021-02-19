@@ -76,9 +76,10 @@ window.onload = function ()
     //console.log(datee);
     
     //set sec to month
-    //var index_to_day = (datee-datte)*86400000;
+    //var index_to_day = (datee-datte)*86400;
+    //var index_to_day = (datee)*86400;
     //demo
-    var index_to_day = 6;
+    var index_to_day = 12;
     //console.log(index_to_day);
     var ct = 0;
     function add_new(arr_temp, arr_index, yValue, dps_arr, check_time)
