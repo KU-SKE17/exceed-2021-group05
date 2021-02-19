@@ -63,7 +63,7 @@ function getData(info) {
         //"auto_climatize": info.auto_climatize,
         "room_warning": {
             "LPG": info.lpg_warning,
-            "CO": info.co2_warning,
+            "CO": info.co_warning,
             "CH4": info.ch4_warning,
             "H2": info.h2_warning,
         },
@@ -82,9 +82,9 @@ function getData(info) {
     current_data = {
         "current_time": info.timestamp * 1000,
         "quality": info.quality,
-        "temperature": info.tempearature,
+        "temperature": info.temperature,
         "LPG": info.lpg_now,
-        "CO": info.co2_now,
+        "CO": info.co_now,
         "CH4": info.ch4_now,
         "H2": info.h2_now,
         "humidity": info.humidity
@@ -148,7 +148,7 @@ location.href = './setting.html';
 
 // Functions for index.html //
 
-function updateIndex(myRoom,now) {
+function update(myRoom,now) {
 
     document.getElementById("greeting").innerHTML = `Hi, ${myRoom.room_owner}`;
     document.getElementById("room-name").innerHTML = `${myRoom.room_name}`;
@@ -203,3 +203,7 @@ function updateIndex(myRoom,now) {
 setInterval(() => { 
     loadData();
 },1000);
+
+
+
+function 

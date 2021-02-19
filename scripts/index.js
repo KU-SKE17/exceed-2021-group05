@@ -64,7 +64,7 @@ function getRandomInt(min, max) {
 function GenerateData() {
     var data = new Now(
         Date.now() * 1000,
-        AirQuality.danger, // edit here for new aq, AirQuality.good , AirQuality.moderate , AirQuality.unhealty , AirQuality.danger
+        AirQuality.moderate, // edit here for new aq, AirQuality.good , AirQuality.moderate , AirQuality.unhealty , AirQuality.danger
         getRandomInt(21,32),
         getRandomInt(500, 1020),
         getRandomInt(10, 200),
