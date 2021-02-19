@@ -153,13 +153,13 @@ function getData(info) {
         // selectAirQuality(info.quality),
         AirQuality.danger,
         info.temperature,
-        info.lpg_history[0],
-        info.co_history[0],
-        info.ch4_history[0],
-        info.h2_history[0],
+        info.lpg_history[info.lpg_history.length-1],
+        info.co_history[info.co_history.length-1],
+        info.ch4_history[info.ch4_history.length-1],
+        info.h2_history[info.h2_history.length-1],
         info.humidity
     );
-    update(myRoom, now)
+    update(myRoom, now);
 }
 
 // TODO: add default id
