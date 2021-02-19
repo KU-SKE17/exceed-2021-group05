@@ -190,4 +190,5 @@ select.selector {
   cursor: pointer;
   overflow: hidden;
   outline: none;
+  color: gainsboro;
 }
