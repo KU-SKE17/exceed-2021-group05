@@ -68,9 +68,9 @@ window.onload = function () {
     var time = new Date();
     
     //set sec to year
-    //var index_to_day = (365)*86400000;
+    //var index_to_day = (365)*86400;
     //demo
-    var index_to_day = 6;
+    var index_to_day = 32;
     var ct = 0;
     function add_new(arr_temp, arr_index, yValue, dps_arr, check_time)
     {
