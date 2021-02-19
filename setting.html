@@ -56,9 +56,11 @@
 
             <label for="room-name">Room's name: </label>
             <!-- <input type="text" name="room-name" class="input-text"> -->
-            <select id="room-name" name="room-name" onchange="loadSetting(this)">
-                <option value="null">-- please choose --</option>
+            <select id="room-name" name="room-name" onchange="loadSetting(this)" class="selector" style="margin-left: 0;">
+                <option value="null">Choose your room</option>
             </select>
+            <br>
+            <br>
             <br><br>
             <label for="owner-name">Owner's name: </label>
             <input id="owner_name" type="text" name="owner-name" class="input-text">
@@ -120,5 +122,6 @@
 
 </body>
 <script src="./scripts/setting.js"></script>
+<script src="./scripts/script.js"></script>
 
 </html>

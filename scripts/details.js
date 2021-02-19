@@ -25,6 +25,35 @@ const roomElement = document.getElementById('roomname');
 const tempElement = document.getElementById('details-temp');
 const humElement = document.getElementById('details-hum');
 
+
+const AirQuality = {
+    "good": {
+        "title": "Good",
+        "description": "Overall air quality in you room is good.",
+        "titleColor": "rgb(0, 197, 168)",       // green
+        "descriptionColor": "rgb(197, 232, 227)",
+    },
+    "moderate": {
+        "title": "Moderate",
+        "description": "Air quality is quite acceptable.",
+        "titleColor": "rgb(252, 211, 3)",       // yellow
+        "descriptionColor": "rgb(247, 237, 186)",
+    },
+    "unhealthy": {
+        "title": "Unhealthy",
+        "description": "This may cause some effects if stay for long time.",
+        "titleColor": "rgb(235, 133, 16)",       // orange
+        "descriptionColor": "rgb(240, 204, 163)",
+    },
+    "danger": {
+        "title": "Danger!",
+        "description": "Your room is not suitable for living!",
+        "titleColor": "crimson",       // red (crimson)
+        "descriptionColor": "rgb(242, 182, 184)",
+    }
+}
+
+
 console.log("Initialized")
 
 // Structure. //
@@ -156,10 +185,10 @@ function getData(info) {
         // selectAirQuality(info.quality),
         AirQuality.danger,
         info.temperature,
-        info.lpg_history[-1],
-        info.co_history[-1],
-        info.ch4_history[-1],
-        info.h2_history[-1],
+        info.lpg_history[info.lpg_history.length-1],
+        info.co_history[info.co_history.length-1],
+        info.ch4_history[info.ch4_history.length-1],
+        info.h2_history[info.h2_history.length-1],
         info.humidity
     );
     update(myRoom, now)
