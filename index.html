@@ -44,6 +44,14 @@
 
     <div class="greeting" id="greeting">Hi, Prayuth</div>
     <br><br>
+    <div style="margin-left: 15%;">
+        <label for="room-name">Room's name: </label>
+        <!-- <input type="text" name="room-name" class="input-text"> -->
+        <select id="room-name" name="room-name" onchange="loadSetting(this)">
+            <option value="null">-- please choose --</option>
+        </select>
+        <br><br>
+    </div>
     <div class="air-indicator-box">
         <table style="height: 100%; width: 100%; ">
             <tr>
@@ -51,7 +59,8 @@
                     <h1 class="air-quality" id="air-quality">Good</h1>
                 </td>
                 <td class="air-quality-description" id="air-quality-description-box">
-                    <p class="air-quality-description" id="air-quality-description">Overall air quality in you room is good.</p>
+                    <p class="air-quality-description" id="air-quality-description">Overall air quality in you room is
+                        good.</p>
                 </td>
             </tr>
         </table>
@@ -74,7 +83,8 @@
                                     <p class="overview-gas-title">LPG</p>
                                 </td>
                                 <td style="width: 80%;">
-                                    <div class="chart" style="background-color: rgb(17, 200, 237);" id="lpg-chart"></div>
+                                    <div class="chart" style="background-color: rgb(17, 200, 237);" id="lpg-chart">
+                                    </div>
                                 </td>
                             </tr>
                             <tr>
@@ -87,7 +97,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <p class="overview-gas-title">CH4</p> 
+                                    <p class="overview-gas-title">CH4</p>
                                 </td>
                                 <td>
                                     <div class="chart" style="background-color: rgb(232, 178, 0);" id="ch4-chart"></div>
@@ -129,10 +139,6 @@
     }
 </script>
 
-<<<<<<< HEAD
-<script src="scripts/index.js"></script>
-=======
 <script src="./scripts/index.js"></script>
->>>>>>> fc99ae796ca8f0f7dcf25ad72f445f3a65a4b74a
 
 </html>

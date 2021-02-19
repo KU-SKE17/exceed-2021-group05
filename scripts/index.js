@@ -51,7 +51,6 @@ const AirQuality = {
     }
 }
 
-<<<<<<< HEAD
 
 
 function getRandomInt(min, max) {
@@ -72,19 +71,6 @@ function GenerateData() {
         getRandomInt(10,30)
     );
     return data;
-=======
-function selectAirQuality(quality) {
-    switch (where) {
-        case "good":
-            return AirQuality.good;
-        case "moderate":
-            return AirQuality.moderate;
-        case "unhealthy":
-            return AirQuality.unhealthy;
-        case "danger":
-            return AirQuality.danger;
-    }
->>>>>>> fc99ae796ca8f0f7dcf25ad72f445f3a65a4b74a
 }
 
 // function getRandomInt(min, max) {
@@ -176,10 +162,10 @@ function getData(info) {
         // selectAirQuality(info.quality),
         AirQuality.danger,
         info.temperature,
-        info.lpg_history[-1],
-        info.co_history[-1],
-        info.ch4_history[-1],
-        info.h2_history[-1],
+        info.lpg_history[info.lpg_history.length-1],
+        info.co_history[info.co_history.length-1],
+        info.ch4_history[info.ch4_history.length-1],
+        info.h2_history[info.h2_history.length-1],
         info.humidity
     );
     update(myRoom, now)
@@ -206,3 +192,27 @@ setInterval(() => {
 }, 1000);
 
 // End of Use for test only //
+
+
+
+
+
+
+
+// For selector //
+
+function loadRoomSelector() {
+    var url = "http://158.108.182.6:3000/find_all";
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((response) => response.json())
+        .then((datas) =>
+            datas.result.forEach((data) => {
+                roomSelector.innerHTML += "\n<option value=\"" + data.room + "\">" + data.room + "</option>"
+            })
+        );
+}
+
+loadRoomSelector()
