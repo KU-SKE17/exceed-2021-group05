@@ -20,7 +20,8 @@ function setTime() {
     var year = d.getFullYear();
     current_time.innerHTML = day + " " + hr + ":" + min + " " + ampm + " " + date + " " + month + " " + year;
 }
-setTime()
+
+setTime();
 setInterval(() => {
-    setTime()
+    setTime();
 }, 1000);

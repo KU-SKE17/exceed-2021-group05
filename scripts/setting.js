@@ -6,7 +6,6 @@ const setting_CO = document.getElementById("setting_CO");
 const setting_CH4 = document.getElementById("setting_CH4");
 const setting_H2 = document.getElementById("setting_H2");
 
-
 function loadRoomSelector() {
     var url = "http://158.108.182.6:3000/find_all";
     fetch(url, {

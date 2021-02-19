@@ -46,20 +46,18 @@
             </ul>
         </div>
     </nav>
-    
+
     <br><br>
     <div class="page-body">
         <br><br><br>
-        <select id="room-name" name="room-name" onchange="loadSetting(this)" class="selector" style="margin-left: 0;">
-            <option value="null">Choose your room</option>
-        </select>
+        <select id="room-selector" class="selector"></select>
         <br><br><br><br>
         <div class="title">Display <span class="live">Live</span></div>
         <hr>
 
         <br><br>
-        <p id="roomname" style="font-size: 130%; font-weight: lighter;">Prayuth</p> <br>
-        <div class="title">Temperature: <span class="details-temp" id="details-temp">33°C</span></div>
+        <p id="room-name" style="font-size: 130%; font-weight: lighter;">Prayuth</p> <br>
+        <div class="title">Temperature: <span class="details-temp" id="temp">33°C</span></div>
         <br>
         <div class="title">Humidity: <span class="details-hum" id="details-hum">12%</span></div>
 
@@ -116,23 +114,27 @@
     <button class="demo-btn" onclick="changeWidth()">animate</button>
     <button class="demo-btn" onclick="reset()">reset</button>
 
+    <!-- trash -->
+    <div id="trash">
+        <div class="greeting" id="greeting">Hi, Prayuth</div>
+        <div class="air-indicator-box">
+            <table style="height: 100%; width: 100%; ">
+                <tr>
+                    <td class="air-quality" id="air-quality-box">
+                        <h1 class="air-quality" id="air-quality">Good</h1>
+                    </td>
+                    <td class="air-quality-description" id="air-quality-description-box">
+                        <p class="air-quality-description" id="air-quality-description">
+                            Overall air quality in you room isgood.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </body>
 
-<script>
-    function changeWidth() {
-        document.getElementById('h2-chart').style.width = '40%';
-        document.getElementById('co-chart').style.width = '100%';
-        document.getElementById('ch4-chart').style.width = '30%';
-        document.getElementById('lpg-chart').style.width = '70%';
-    }
-    function reset() {
-        document.getElementById('h2-chart').style.width = '60%';
-        document.getElementById('co-chart').style.width = '60%';
-        document.getElementById('ch4-chart').style.width = '60%';
-        document.getElementById('lpg-chart').style.width = '60%';
-    }
-</script>
-<script src="./scripts/details.js"></script>
+<script src="./scripts/index.js"></script>
 <script src="./scripts/script.js"></script>
 
 </html>

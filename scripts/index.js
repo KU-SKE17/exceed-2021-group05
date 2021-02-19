@@ -1,4 +1,19 @@
-// Use for test only //
+const roomSelector = document.getElementById("room-selector");
+
+function loadRoomSelector() {
+    var url = "http://158.108.182.6:3000/find_all";
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((response) => response.json())
+        .then((datas) =>
+            datas.result.forEach((data) => {
+                roomSelector.innerHTML += "\n<option value=\"" + data.room + "\">" + data.room + "</option>"
+            })
+        );
+}
+loadRoomSelector();
 
 const Room = class {
     constructor(roomName, roomOwner, warningLevel, autoClimatize) {
@@ -21,8 +36,6 @@ const Now = class {
         this.humidity = humidity;
     }
 }
-
-const tempElement = document.getElementById('temp');
 
 const AirQuality = {
     "good": {
@@ -64,81 +77,53 @@ function selectAirQuality(quality) {
     }
 }
 
-// function getRandomInt(min, max) {
-//     min = Math.ceil(min);
-//     max = Math.floor(max);
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
+const roomElement = document.getElementById('room-name');
+const tempElement = document.getElementById('temp');
+const humElement = document.getElementById('details-hum');
 
-// function GenerateData() {
-//     var data = new Now(
-//         Date.now() * 1000,
-//         AirQuality.danger, // edit here for new aq, AirQuality.good , AirQuality.moderate , AirQuality.unhealty , AirQuality.danger
-//         getRandomInt(21, 32),
-//         getRandomInt(500, 1020),
-//         getRandomInt(10, 200),
-//         getRandomInt(500, 1020),
-//         getRandomInt(500, 1020),
-//         getRandomInt(10, 30)
-//     );
-//     return data;
-// }
+const lpgChart = document.getElementById('lpg-chart');
+const lpgAmount = document.getElementById('lpg-amount');
 
+const coChart = document.getElementById('co-chart');
+const coAmount = document.getElementById('co-amount');
+
+const ch4Chart = document.getElementById('ch4-chart')
+const ch4Amount = document.getElementById('ch4-amount');
+
+const h2Chart = document.getElementById('h2-chart');
+const h2Amount = document.getElementById('h2-amount');
+
+function updateChart(chart, amount, current, warning, color) {
+    if (current > warning) {
+        // color red (crimson)
+        chart.style.width = `100%`;
+        chart.style.backgroundColor = 'crimson';
+        amount.innerHTML = `${current} ppm (Danger!)`;
+    }
+    else {
+        chart.style.width = `${current / 10}%`;
+        chart.style.backgroundColor = color;
+        amount.innerHTML = `${current} ppm`;
+    }
+}
 
 function update(myRoom, now) {
-    // var myRoom = new Room("Prayuth's Bedroom", "Prayuth", { "LPG": 1000, "CO": 100, "CH4": 1000, "H2": 1000 }, false);
     document.getElementById("greeting").innerHTML = `Hi, ${myRoom.roomOwner}`;
-    document.getElementById("room-name").innerHTML = `${myRoom.roomName}`;
 
-    // var now = GenerateData();
+    roomElement.innerHTML = `${myRoom.roomName}`;
     tempElement.innerHTML = `${now.temp}°C`;
+    humElement.innerHTML = `${now.humidity}%`;
+
     document.getElementById('air-quality').innerHTML = now.quality.title;
     document.getElementById('air-quality-box').style.backgroundColor = now.quality.titleColor;
     document.getElementById('air-quality-description').innerHTML = now.quality.description;
     document.getElementById('air-quality-description-box').style.backgroundColor = now.quality.descriptionColor;
 
-    if (now.LPG > myRoom.warningLevel.LPG) {
-        // color red (crimson)
-        document.getElementById('lpg-chart').style.width = `100%`;
-        document.getElementById('lpg-chart').style.backgroundColor = 'crimson';
-    }
-    else {
-        document.getElementById('lpg-chart').style.width = `${now.LPG / 10}%`;
-        document.getElementById('lpg-chart').style.backgroundColor = 'rgb(17, 200, 237)';
-    }
-
-    if (now.CO > myRoom.warningLevel.CO) {
-
-        // color red (crimson)
-        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
-        document.getElementById('co-chart').style.backgroundColor = 'crimson';
-    }
-    else {
-        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
-        document.getElementById('co-chart').style.backgroundColor = 'rgb(242, 2, 78)';
-    }
-
-    if (now.CH4 > myRoom.warningLevel.CH4) {
-        // color red (crimson)
-        document.getElementById('ch4-chart').style.width = `100%`;
-        document.getElementById('ch4-chart').style.backgroundColor = 'crimson';
-    }
-    else {
-        document.getElementById('ch4-chart').style.width = `${now.CH4 / 10}%`;
-        document.getElementById('ch4-chart').style.backgroundColor = 'rgb(232, 178, 0)';
-    }
-
-    if (now.H2 > myRoom.warningLevel.H2) {
-        // color red (crimson)
-        document.getElementById('h2-chart').style.width = `100%`;
-        document.getElementById('h2-chart').style.backgroundColor = 'crimson';
-    }
-    else {
-        document.getElementById('h2-chart').style.width = `${now.H2 / 10}%`;
-        document.getElementById('h2-chart').style.backgroundColor = 'rgb(0, 255, 145)';
-    }
+    updateChart(lpgChart, lpgAmount, now.LPG, myRoom.warningLevel.LPG, 'rgb(17, 200, 237)');
+    updateChart(coChart, coAmount, now.CO, myRoom.warningLevel.CO, 'rgb(242, 2, 78)');
+    updateChart(ch4Chart, ch4Amount, now.CH4, myRoom.warningLevel.CH4, 'rgb(232, 178, 0)');
+    updateChart(h2Chart, h2Amount, now.H2, myRoom.warningLevel.H2, 'rgb(0, 255, 145)');
 }
-
 
 function getData(info) {
     var myRoom = new Room(info.room, info.room_owner, {
@@ -153,18 +138,17 @@ function getData(info) {
         // selectAirQuality(info.quality),
         AirQuality.moderate,
         info.temperature,
-        info.lpg_history[info.lpg_history.length-1],
-        info.co_history[info.co_history.length-1],
-        info.ch4_history[info.ch4_history.length-1],
-        info.h2_history[info.h2_history.length-1],
+        info.lpg_history[info.lpg_history.length - 1],
+        info.co_history[info.co_history.length - 1],
+        info.ch4_history[info.ch4_history.length - 1],
+        info.h2_history[info.h2_history.length - 1],
         info.humidity
     );
     update(myRoom, now);
 }
 
-// TODO: add default id
 function loadData() {
-    var room_id = "kitchen";
+    var room_id = roomSelector.value;
     var url = "http://158.108.182.6:3000/find?room=".concat(room_id);
     fetch(url, {
         method: "GET",
@@ -178,8 +162,23 @@ function loadData() {
         );
 }
 
+loadData();
 setInterval(() => {
     loadData();
 }, 1000);
 
-// End of Use for test only //
+// demo data
+function changeWidth() {
+    document.getElementById('h2-chart').style.width = '40%';
+    document.getElementById('co-chart').style.width = '70%';
+    document.getElementById('ch4-chart').style.width = '30%';
+    document.getElementById('lpg-chart').style.width = '20%';
+}
+function reset() {
+    document.getElementById('h2-chart').style.width = '60%';
+    document.getElementById('co-chart').style.width = '60%';
+    document.getElementById('ch4-chart').style.width = '60%';
+    document.getElementById('lpg-chart').style.width = '60%';
+}
+
+document.getElementById('trash').style.display = "none";
