@@ -181,3 +181,11 @@ p.overview-gas-amount {
     font-size: 120%;
     padding-right: 10px;
 }
+
+
+select.selector {
+    margin-left: 15%;  
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+}

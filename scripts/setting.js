@@ -60,12 +60,12 @@ function sendForm() {
     if (setting_owner.value && setting_LPG.value && setting_CO.value && setting_CH4.value && setting_H2.value) {
         alert("Setting Successfully");
         var new_setting = {
-            'room': roomSelector.value,
-            'room_owner': setting_owner.value,
-            'lpg_warning': setting_LPG.value,
-            'co_warning': setting_CO.value,
-            'ch4_warning': setting_CH4.value,
-            'h2_warning': setting_H2.value,
+            room: roomSelector.value,
+            room_owner: setting_owner.value,
+            lpg_warning: setting_LPG.value,
+            co_warning: setting_CO.value,
+            ch4_warning: setting_CH4.value,
+            h2_warning: setting_H2.value,
         }
         updateSetting(new_setting);
     } else {

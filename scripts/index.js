@@ -151,7 +151,7 @@ function getData(info) {
     var now = new Now(
         info.timestamp * 1000,
         // selectAirQuality(info.quality),
-        AirQuality.danger,
+        AirQuality.moderate,
         info.temperature,
         info.lpg_history[info.lpg_history.length-1],
         info.co_history[info.co_history.length-1],

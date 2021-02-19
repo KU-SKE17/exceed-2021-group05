@@ -69,7 +69,8 @@ window.onload = function () {
     var now = time.getHours();
     
     //set sec to day
-    //var index_to_day = (24-now-1)*3600000;
+    //var index_to_day = (24-now-1)*3600;
+    //var index_to_day = (24)*3600;
     //demo
     var index_to_day = 6;
     console.log(index_to_day);
