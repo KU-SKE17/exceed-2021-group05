@@ -153,10 +153,10 @@ function getData(info) {
         // selectAirQuality(info.quality),
         AirQuality.danger,
         info.temperature,
-        info.lpg_history[0],
-        info.co_history[0],
-        info.ch4_history[0],
-        info.h2_history[0],
+        info.lpg_history[-1],
+        info.co_history[-1],
+        info.ch4_history[-1],
+        info.h2_history[-1],
         info.humidity
     );
     update(myRoom, now)
