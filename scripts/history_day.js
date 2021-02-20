@@ -176,9 +176,12 @@ function loadData() {
         );
 }
 
+console.log(arr_LPG_raw);
+
 loadData()
 //set old_raw to dps
-for (var i = 0; i < arr_LPG_raw.length; i++) {
+for (var i = 0; i < arr_LPG_raw.length; i++) 
+{
     ct++;
     add_new(arr_LPG, arr_LPG_index, arr_LPG_raw[i], dps_LPG, 0);
     add_new(arr_CO2, arr_CO2_index, arr_CO2_raw[i], dps_CO2, 0);
