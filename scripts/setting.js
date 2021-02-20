@@ -51,7 +51,7 @@ function sendForm() {
     if (setting_owner.value && setting_LPG.value && setting_CO.value && setting_CH4.value && setting_H2.value) {
         updateSetting(roomSelector.value);
         alert("Setting Successfully");
-        location.reload();
+        location.href = 'index.html';
     } else {
         alert("Setting Failure");
     }
