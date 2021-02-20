@@ -1,6 +1,7 @@
 const roomSelector = document.getElementById("room-selector");
 const warning = document.getElementById('warning');
 const windowStatus = document.getElementById('window-status');
+const toggleWindow = document.getElementById('toggle-window');
 
 const Room = class {
     constructor(roomName, roomOwner, warningLevel, autoClimatize) {
@@ -96,7 +97,23 @@ function loadWindowStatus() {
 }
 
 function setTextWindowStatus(boo) {
-    windowStatus.innerHTML = boo ? 'on' : 'off';
+    console.log(document.getElementById('air-quality').innerHTML);
+    if (boo && document.getElementById('air-quality').innerHTML == 'Danger') {
+        windowStatus.innerHTML = 'On';
+        windowStatus.style.color = 'rgb(8, 194, 150)';
+        toggleWindow.innerHTML = 'Function disabled.';
+    }
+    else if (boo) {
+        windowStatus.innerHTML = 'On';
+        windowStatus.style.color = 'rgb(8, 194, 150)';
+        toggleWindow.innerHTML = 'Close window';
+        
+    }
+    else {
+        windowStatus.innerHTML = 'Off';
+        windowStatus.style.color = 'crimson';
+        toggleWindow.innerHTML = 'Open window';
+    }
 }
 
 function updateSwitch(new_status) {
@@ -111,7 +128,10 @@ function updateSwitch(new_status) {
 }
 
 function setWindow() {
-    if (windowStatus.innerHTML == 'on') {
+    if (windowStatus.innerHTML == 'On' && document.getElementById('air-quality').innerHTML == 'Danger') {
+        alert("You cannot close the window while your room is in a critical condition.")
+    }
+    else if (windowStatus.innerHTML == 'On') {
         updateSwitch(false);
         alert("Closing...");
     }
