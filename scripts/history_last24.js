@@ -16,6 +16,11 @@ var co2_ct = 1;
 var ch4_ct = 1;
 var h2_ct = 1;
 
+var newest_lpg;
+var newest_co2;
+var newest_ch4;
+var newest_h2;
+
 var arr_LPG = [], arr_LPG_index = 0;
 var arr_CO2 = [], arr_CO2_index = 0;
 var arr_CH4 = [], arr_CH4_index = 0;
@@ -102,7 +107,8 @@ function add_new(arr_temp, arr_index, yValue, dps_arr, check_time, ct)
         if (check_time == 0) time.setTime(time.getTime() - updateInterval * index_to_day);
     }
     else time.setTime(time.getTime());
-    if(check_time == 1) console.log("arr_temp.length =",arr_temp.length, " arr_index =", arr_index, " yValue =", yValue, " dps_arr.length =", dps_arr.length, " ct =", ct)
+    //if(check_time == 1) console.log("arr_temp.length =",arr_temp.length, " arr_index =", arr_index, " yValue =", yValue, " dps_arr.length =", dps_arr.length, " ct =", ct)
+    return temp;
 }
 
 function getData(info) 
@@ -152,10 +158,10 @@ function updateChart()
         for (var i = 0; i < arr_LPG_raw.length; i++) 
         {
             update_ct_index();
-            add_new(arr_LPG, arr_LPG_index, arr_LPG_raw[i], dps_LPG, 0, lpg_ct);
-            add_new(arr_CO2, arr_CO2_index, arr_CO2_raw[i], dps_CO2, 0, co2_ct);
-            add_new(arr_CH4, arr_CH4_index, arr_CH4_raw[i], dps_CH4, 0, ch4_ct);
-            add_new(arr_H2, arr_H2_index, arr_H2_raw[i], dps_H2, 1, h2_ct);
+            newest_lpg = add_new(arr_LPG, arr_LPG_index, arr_LPG_raw[i], dps_LPG, 0, lpg_ct);
+            newest_co2 = add_new(arr_CO2, arr_CO2_index, arr_CO2_raw[i], dps_CO2, 0, co2_ct);
+            newest_ch4 = add_new(arr_CH4, arr_CH4_index, arr_CH4_raw[i], dps_CH4, 0, ch4_ct);
+            newest_h2 = add_new(arr_H2, arr_H2_index, arr_H2_raw[i], dps_H2, 1, h2_ct);
         }
         
     }
@@ -169,16 +175,17 @@ function updateChart()
 
         //pushing the new values
         update_ct_index();
-        add_new(arr_LPG, arr_LPG_index, y_LPG_value, dps_LPG, 0, lpg_ct);
-        add_new(arr_CO2, arr_CO2_index, y_CO2_value, dps_CO2, 0, co2_ct);
-        add_new(arr_CH4, arr_CH4_index, y_CH4_value, dps_CH4, 0, ch4_ct);
-        add_new(arr_H2, arr_H2_index, y_H2_value, dps_H2, 1, h2_ct);
+        newest_lpg = add_new(arr_LPG, arr_LPG_index, y_LPG_value, dps_LPG, 0, lpg_ct);
+        newest_co2 = add_new(arr_CO2, arr_CO2_index, y_CO2_value, dps_CO2, 0, co2_ct);
+        newest_ch4 = add_new(arr_CH4, arr_CH4_index, y_CH4_value, dps_CH4, 0, ch4_ct);
+        newest_h2 = add_new(arr_H2, arr_H2_index, y_H2_value, dps_H2, 1, h2_ct);
 
         // updating legend text with  updated with y Value 
-        chart.options.data[0].legendText = " LPG " + dps_LPG[dps_LPG.length - 1] + " (ppm)";
-        chart.options.data[1].legendText = " CO2 " + dps_CO2[dps_CO2.length - 1] + " (ppm)";
-        chart.options.data[2].legendText = " CH4 " + dps_CH4[dps_CH4.length - 1] + " (ppm)";
-        chart.options.data[3].legendText = " H2 " + dps_H2[dps_H2.length - 1] + " (ppm)";
+        chart.options.data[0].legendText = " LPG " + newest_lpg + " (ppm)";
+        chart.options.data[1].legendText = " CO2 " + newest_co2 + " (ppm)";
+        chart.options.data[2].legendText = " CH4 " + newest_ch4 + " (ppm)";
+        chart.options.data[3].legendText = " H2 " + newest_h2 + " (ppm)";
+
         if(dps_LPG.length > 86400) 
         {
             dps_LPG.shift();
