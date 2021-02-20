@@ -41,7 +41,7 @@ var arr_H2 = [], arr_H2_index = 0;
 var chart = new CanvasJS.Chart("chartContainer", {
     zoomEnabled: true,
     title: { text: "air quality" },
-    axisX: { title: "Demo chart updates every 1 year" },
+    axisX: { title: "Demo chart updates every 1 sec" },
     axisY: { posfix: "ppm" },
     toolTip: { shared: true },
     legend: { cursor: "pointer", verticalAlign: "top", fontSize: 22, fontColor: "dimGrey", itemclick: toggleDataSeries },
@@ -51,7 +51,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
                 type: "line",
                 xValueType: "dateTime",
                 yValueFormatString: "####.00 (ppm)",
-                xValueFormatString: "YYYY",
+                xValueFormatString: "hh:mm:ss TT",
                 showInLegend: true,
                 name: "LPG",
                 dataPoints: dps_LPG
@@ -96,7 +96,7 @@ var updateInterval = 1000;
 var time = new Date();
 var now = time.getHours();
 //round
-var index_to_day = 31536000;
+var index_to_day = 1;
 
 //add dps func
 function add_new(arr_temp, arr_index, yValue, dps_arr, check_time, ct) 
@@ -104,7 +104,7 @@ function add_new(arr_temp, arr_index, yValue, dps_arr, check_time, ct)
     var temp = 0;
 
     arr_temp.push(yValue);
-    for (var i = arr_index; i < arr_temp.length; i++) temp += arr_temp[i];
+    for (var i = arr_index-1; i < arr_temp.length; i++) temp += arr_temp[i];
     temp /= (arr_temp.length - arr_index + 1);
 
     //if(check_time == 1) console.log(temp)
@@ -118,7 +118,7 @@ function add_new(arr_temp, arr_index, yValue, dps_arr, check_time, ct)
         if (check_time == 0) time.setTime(time.getTime() - updateInterval * index_to_day);
     }
     else time.setTime(time.getTime());
-    //if(check_time == 1) console.log("arr_temp.length =",arr_temp.length, " arr_index =", arr_index, " yValue =", yValue, " dps_arr.length =", dps_arr.length, " ct =", ct)
+    if(check_time == 1) console.log("arr_temp.length =",arr_temp.length, " arr_index =", arr_index, " yValue =", yValue, " dps_arr.length =", dps_arr.length, " ct =", ct)
 }
 
 function getData(info) 
