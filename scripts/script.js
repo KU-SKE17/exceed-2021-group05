@@ -1,4 +1,5 @@
 const current_time = document.getElementById("time");
+const firstSelector = document.getElementById("room-selector");
 
 function setTime() {
     var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -25,3 +26,34 @@ setTime();
 setInterval(() => {
     setTime();
 }, 1000);
+
+function linkTo(html) {
+    var url = html + "?selector=" + firstSelector.value;
+    window.location.href = url;
+}
+
+function getQueryParam(param) {
+    var result = window.location.search.match(
+        new RegExp("(\\?|&)" + param + "(\\[\\])?=([^&]*)")
+    );
+    return result ? result[3] : 'kitchen';
+}
+
+function loadRoomSelector() {
+    var url = "http://158.108.182.6:3000/find_all";
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((response) => response.json())
+        .then((datas) =>
+            datas.result.forEach((data) => {
+                firstSelector.innerHTML
+                    += "\n<option value=\"" + data.room + "\">" + data.room + "</option>"
+            })
+        ).then(() => {
+            firstSelector.value = getQueryParam('selector');
+        });
+}
+
+loadRoomSelector();

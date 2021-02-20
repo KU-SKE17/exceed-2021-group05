@@ -1,20 +1,4 @@
 const roomSelector = document.getElementById("room-selector");
-var airQuality;
-
-function loadRoomSelector() {
-    var url = "http://158.108.182.6:3000/find_all";
-    fetch(url, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    })
-        .then((response) => response.json())
-        .then((datas) =>
-            datas.result.forEach((data) => {
-                roomSelector.innerHTML += "\n<option value=\"" + data.room + "\">" + data.room + "</option>"
-            })
-        );
-}
-loadRoomSelector();
 
 const Room = class {
     constructor(roomName, roomOwner, warningLevel, autoClimatize) {
@@ -65,6 +49,8 @@ const AirQuality = {
     }
 }
 
+var airQuality = AirQuality.good;
+
 function setAirQuality(quality) {
     switch (quality) {
         case "good":
@@ -92,8 +78,7 @@ function loadAirQuality() {
         .then((response) => response.json())
         .then((data) => {
             setAirQuality(data.quality);
-        }
-        );
+        });
 }
 
 const roomElement = document.getElementById('room-name');

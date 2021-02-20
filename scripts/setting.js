@@ -1,26 +1,10 @@
-const roomSelector = document.getElementById("room-name");
+const roomSelector = document.getElementById("room-selector");
 
 const setting_owner = document.getElementById("owner_name");
 const setting_LPG = document.getElementById("setting_LPG");
 const setting_CO = document.getElementById("setting_CO");
 const setting_CH4 = document.getElementById("setting_CH4");
 const setting_H2 = document.getElementById("setting_H2");
-
-function loadRoomSelector() {
-    var url = "http://158.108.182.6:3000/find_all";
-    fetch(url, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    })
-        .then((response) => response.json())
-        .then((datas) =>
-            datas.result.forEach((data) => {
-                roomSelector.innerHTML += "\n<option value=\"" + data.room + "\">" + data.room + "</option>"
-            })
-        );
-}
-
-loadRoomSelector()
 
 function fillData(room_name) {
     var url = "http://158.108.182.6:3000/find?room=".concat(room_name);
@@ -42,7 +26,11 @@ function fillData(room_name) {
 
 function loadSetting(el) {
     var value = el.options[el.selectedIndex].value;
-    fillData(value)
+    fillData(value);
+}
+
+function autoFill() {
+    fillData(roomSelector.value);
 }
 
 function updateSetting(room) {

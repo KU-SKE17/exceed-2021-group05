@@ -20,14 +20,14 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="padding-left: 30px;">
-        <a class="time" href="./index.html" id="time">01:12 AM</a>
+        <a class="time" onclick="linkTo('./index.html')" id="time">01:12 AM</a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item ">
-                    <a class="menu" href="./setting.html">Setting</a>
+                    <a class="menu" onclick="linkTo('./setting.html')">Setting</a>
                 </li>
                 <li class="nav-item">
-                    <a class="menu" href="./details.html">Details</a>
+                    <a class="menu" onclick="linkTo('./details.html')">Details</a>
                 </li>
                 <li class="nav-item">
                     <a class="menu" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -35,9 +35,9 @@
                         History
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="./history_day.html">History_day</a>
-                        <a class="dropdown-item" href="./history_month.html">History_month</a>
-                        <a class="dropdown-item" href="./history_year.html">History_year</a>
+                        <a class="dropdown-item" onclick="linkTo('./history_day.html')">History_day</a>
+                        <a class="dropdown-item" onclick="linkTo('./history_month.html')">History_month</a>
+                        <a class="dropdown-item" onclick="linkTo('./history_year.html')">History_year</a>
                     </div>
                 </li>
                 <li class="nav-item">
