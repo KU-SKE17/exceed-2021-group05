@@ -56,3 +56,5 @@ function sendForm() {
         alert("Setting Failure");
     }
 }
+
+autoFill();
