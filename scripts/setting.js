@@ -6,7 +6,6 @@ const setting_CO = document.getElementById("setting_CO");
 const setting_CH4 = document.getElementById("setting_CH4");
 const setting_H2 = document.getElementById("setting_H2");
 
-
 function loadRoomSelector() {
     var url = "http://158.108.182.6:3000/find_all";
     fetch(url, {
@@ -52,10 +51,10 @@ function updateSetting(room) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             "room_owner": setting_owner.value,
-            "lpg_warning": setting_LPG.value,
-            "co_warning": setting_CO.value,
-            "ch4_warning": setting_CH4.value,
-            "h2_warning": setting_H2.value,
+            "lpg_warning": Number(setting_LPG.value),
+            "co_warning": Number(setting_CO.value),
+            "ch4_warning": Number(setting_CH4.value),
+            "h2_warning": Number(setting_H2.value),
         }),
     }).then((response) => response.json())
 }

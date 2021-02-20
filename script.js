@@ -204,6 +204,3 @@ setInterval(() => {
     loadData();
 },1000);
 
-
-
-function 
