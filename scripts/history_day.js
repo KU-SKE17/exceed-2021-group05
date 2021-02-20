@@ -73,7 +73,7 @@ window.onload = function () {
     //var index_to_day = (24)*3600;
     //demo
     var index_to_day = 6;
-    console.log(index_to_day);
+    //console.log(index_to_day);
     var ct = 0;
     function add_new(arr_temp, arr_index, yValue, dps_arr, check_time)
     {
@@ -101,24 +101,40 @@ window.onload = function () {
         }
     }
     
-    
-    // initial value
-    var y_LPG_value = 1099;
-    var y_CO2_value = 999;
-    var y_CH4_value = 810; 
-    var y_H2_value = 786;
-    
     //data array
-    var arr_LPG_raw = [789,879,799,856,955,459,765,985,985,563];
-    var arr_CO2_raw = [789,989,799,785,955,485,765,985,354,563];
-    var arr_CH4_raw = [789,879,983,856,492,459,765,985,985,563];
-    var arr_H2_raw = [789,879,799,856,955,561,765,985,985,999];
-    
+    var arr_LPG_raw = [] ;
+    var arr_CO2_raw = [] ;
+    var arr_CH4_raw = [] ;
+    var arr_H2_raw = [] ;
+
     var arr_LPG = [], arr_LPG_index = 0;
     var arr_CO2 = [], arr_CO2_index = 0;
     var arr_CH4 = [], arr_CH4_index = 0;
     var arr_H2 = [], arr_H2_index = 0;
     
+    var room_id = "bedroom";
+    var url = "http://158.108.182.6:3000/find?room=".concat(room_id);
+    fetch
+    (url, {method: "GET",headers: { "Content-Type": "application/json" },})
+        .then((response) => response.json())
+        .then((datas) =>datas.result.forEach((data) => 
+        {
+                arr_LPG_raw = data.lpg_history,
+                arr_CO2_raw = data.co_history,
+                arr_CH4_raw = data.ch4_history,
+                arr_H2_raw = data.h2_history
+                console.log(arr_LPG_raw);
+        })
+    );
+
+    console.log(arr_LPG_raw);
+
+    // initial value
+    var y_LPG_value = arr_LPG_raw[arr_LPG_raw.length - 1];
+    var y_CO2_value = arr_CO2_raw[arr_CO2_raw.length - 1];
+    var y_CH4_value = arr_CH4_raw[arr_CH4_raw.length - 1]; 
+    var y_H2_value = arr_H2_raw[arr_H2_raw.length - 1];
+
     //set old_raw to dps
     for(var i=0; i<arr_LPG_raw.length; i++)
     {
@@ -131,6 +147,22 @@ window.onload = function () {
     
     function updateChart() 
     {
+        var room_id = "bedroom";
+        var url = "http://158.108.182.6:3000/find?room=".concat(room_id);
+        fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        })
+        .then((response) => response.json())
+        .then((datas) =>
+            datas.result.forEach((data) => {
+                arr_LPG_raw = data.lpg_history,
+                arr_CO2_raw = data.co_history,
+                arr_CH4_raw = data.ch4_history,
+                arr_H2_raw = data.h2_history
+            })
+        );
+
         ///
         //random
         var deltaY1, deltaY2, deltaY3, deltaY4;
@@ -168,5 +200,4 @@ window.onload = function () {
     // generates first set of dataPoints 
     updateChart();	
     setInterval(function(){updateChart()}, updateInterval);
-    
     }
