@@ -159,15 +159,10 @@ span.live {
   font-weight: normal;
 }
 
-span.details-temp {
-  color: rgb(10, 194, 133);
-  font-weight: bold;
-  margin-left: 20px;
-}
 
-span.details-hum {
-  color: rgb(36, 169, 192);
-  font-weight: normal;
+span.details-display {
+  color: rgb(39, 115, 150);
+  font-weight: lighter;
   margin-left: 20px;
 }
 

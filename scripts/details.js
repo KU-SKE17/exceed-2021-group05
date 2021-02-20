@@ -149,13 +149,15 @@ function update(myRoom, now) {
     tempElement.innerHTML = `${now.temp}°C`;
     humElement.innerHTML = `${now.humidity}%`;
 
+    // This is only for index.html !!!
+    // document.getElementById('air-quality').innerHTML = now.quality.title;
+    // document.getElementById('air-quality-box').style.backgroundColor = now.quality.titleColor;
+    // document.getElementById('air-quality-description').innerHTML = now.quality.description;
+    // document.getElementById('air-quality-description-box').style.backgroundColor = now.quality.descriptionColor;
 
-    document.getElementById('air-quality').innerHTML = now.quality.title;
-    document.getElementById('air-quality-box').style.backgroundColor = now.quality.titleColor;
-    document.getElementById('air-quality-description').innerHTML = now.quality.description;
-    document.getElementById('air-quality-description-box').style.backgroundColor = now.quality.descriptionColor;
-
-    document.getElementById
+    // This is only for details.html
+    document.getElementById('quality').style.color = now.quality.titleColor;
+    document.getElementById('quality').innerHTML = now.quality.title;
     updateChart(lpgChart, lpgAmount, now.LPG, myRoom.warningLevel.LPG, 'rgb(17, 200, 237)');
     updateChart(coChart, coAmount, now.CO, myRoom.warningLevel.CO, 'rgb(242, 2, 78)');
     updateChart(ch4Chart, ch4Amount, now.CH4, myRoom.warningLevel.CH4, 'rgb(232, 178, 0)');
