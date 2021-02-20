@@ -91,9 +91,12 @@ function loadWindowStatus() {
     })
         .then((response) => response.json())
         .then((data) => {
-            // console.log(data.result);
-            windowStatus.innerHTML = data.result ? 'on' : 'off';
+            setTextWindowStatus(data.result);
         });
+}
+
+function setTextWindowStatus(boo) {
+    windowStatus.innerHTML = boo ? 'on' : 'off';
 }
 
 function updateSwitch(new_status) {
@@ -102,7 +105,7 @@ function updateSwitch(new_status) {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            "result": new_status,
+            "switch": new_status,
         }),
     }).then((response) => response.json())
 }
