@@ -42,16 +42,20 @@ body {
 }
 
 td.air-quality {
+  text-align: center;
+  color: white;
+  font-size: 200%;
   height: 100%;
   width: 30%;
-  background-color: rgb(0, 197, 168);
+  background-color: rgb(4, 169, 207);
   transition: 300ms ease;
 }
 
 td.air-quality-description {
+  font-weight: lighter;
   height: 100%;
   width: 70%;
-  background-color: rgb(197, 232, 227);
+  background-color: rgb(220, 242, 250);
   transition: 300ms ease;
 }
 
@@ -177,9 +181,10 @@ select.selector {
   margin-left: 15%;
   width: 200px;
   height: 30px;
-  border-radius: 10px;
+  border-radius: 3px;
   text-align: right;
-  font-size: 120%;
+  font-size: 100%;
+  font-weight: lighter;
   padding-right: 10px;
 }
 
@@ -191,4 +196,27 @@ select.selector {
   overflow: hidden;
   outline: none;
   color: gainsboro;
+}
+
+.link {
+  transition: 200ms ease;
+  margin-top: 100px;
+  color: rgb(168, 168, 168);
+}
+
+div.warning {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  height: 40px;
+  background-color: rgb(247, 229, 230);
+  color: rgb(247, 10, 34);
+  border-style: solid;
+  border-color: rgb(201, 109, 118);
+  border-width: 0.5px;
+  border-radius: 5px;
+  transition: 300ms ease;
+  visibility: hidden;
 }

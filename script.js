@@ -31,7 +31,7 @@ const AirQuality = {
         "title": "Good",
         "description": "Overall air quality in you room is good.",
         "titleColor": "rgb(0, 197, 168)",       // green
-        "descriptionColor": "rgb(197, 232, 227)",
+        "descriptionColor": "rgb(223, 245, 239)",
     },
     "moderate": {
         "title": "Moderate",
@@ -43,7 +43,7 @@ const AirQuality = {
         "title": "Unhealthy",
         "description": "This may cause some effects if stay for long time.",
         "titleColor": "rgb(235, 133, 16)",       // orange
-        "descriptionColor": "rgb(240, 204, 163)",
+        "descriptionColor": "rgb(245, 231, 193)",
     },
     "danger": {
         "title": "Danger!",
@@ -164,17 +164,17 @@ function update(myRoom,now) {
         document.getElementById('lpg-chart').style.backgroundColor = 'crimson';
     }
     else {   
-        document.getElementById('lpg-chart').style.width = `${now.LPG / 10}%`;
+        document.getElementById('lpg-chart').style.width = `${now.LPG}%`;
         document.getElementById('lpg-chart').style.backgroundColor = 'rgb(17, 200, 237)';
     }
     if (now.CO > myRoom.room_warning.CO) {
         
         // color red (crimson)
-        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
+        document.getElementById('co-chart').style.width = `${now.CO}%`;
         document.getElementById('co-chart').style.backgroundColor = 'crimson';
     }
     else {   
-        document.getElementById('co-chart').style.width = `${now.CO / 10}%`;
+        document.getElementById('co-chart').style.width = `${now.CO}%`;
         document.getElementById('co-chart').style.backgroundColor = 'rgb(242, 2, 78)';
     }
     if (now.CH4 > myRoom.room_warning.CH4) {
@@ -183,7 +183,7 @@ function update(myRoom,now) {
         document.getElementById('ch4-chart').style.backgroundColor = 'crimson';
     }
     else {
-        document.getElementById('ch4-chart').style.width = `${now.CH4 / 10}%`;
+        document.getElementById('ch4-chart').style.width = `${now.CH4}%`;
         document.getElementById('ch4-chart').style.backgroundColor = 'rgb(232, 178, 0)';
     }
     if (now.H2 > myRoom.room_warning.H2) {
@@ -192,7 +192,7 @@ function update(myRoom,now) {
         document.getElementById('h2-chart').style.backgroundColor = 'crimson';
     }
     else {
-        document.getElementById('h2-chart').style.width = `${now.H2 / 10}%`;
+        document.getElementById('h2-chart').style.width = `${now.H2}%`;
         document.getElementById('h2-chart').style.backgroundColor = 'rgb(0, 255, 145)';
     }
 

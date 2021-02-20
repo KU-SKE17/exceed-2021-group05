@@ -1,4 +1,5 @@
 const roomSelector = document.getElementById("room-selector");
+const warning      = document.getElementById('warning');
 var airQuality;
 
 function loadRoomSelector() {
@@ -39,11 +40,11 @@ const Now = class {
 }
 
 const AirQuality = {
-    "good": {
+    "good":  {
         "title": "Good",
         "description": "Overall air quality in you room is good.",
         "titleColor": "rgb(0, 197, 168)",       // green
-        "descriptionColor": "rgb(197, 232, 227)",
+        "descriptionColor": "rgb(223, 245, 239)",
     },
     "moderate": {
         "title": "Moderate",
@@ -55,7 +56,7 @@ const AirQuality = {
         "title": "Unhealthy",
         "description": "This may cause some effects if stay for long time.",
         "titleColor": "rgb(235, 133, 16)",       // orange
-        "descriptionColor": "rgb(240, 204, 163)",
+        "descriptionColor": "rgb(245, 231, 193)",
     },
     "danger": {
         "title": "Danger!",
@@ -64,6 +65,13 @@ const AirQuality = {
         "descriptionColor": "rgb(242, 182, 184)",
     }
 }
+
+// function resetAirQuality() {
+//     document.getElementById('air-quality').innerHTML = 'Just a sec';
+//     document.getElementById('air-quality-box').style.backgroundColor = 'rgb(4, 169, 207)';
+//     document.getElementById('air-quality-description').innerHTML = 'We are getting your data';
+//     document.getElementById('air-quality-description-box').style.backgroundColor = 'rgb(220, 242, 250)';
+// }
 
 function setAirQuality(quality) {
     switch (quality) {
@@ -120,13 +128,21 @@ function updateChart(chart, amount, current, warning, color) {
         amount.innerHTML = `${current} ppm (Danger!)`;
     }
     else {
-        chart.style.width = `${current / 10}%`;
+        chart.style.width = `${current}%`;
         chart.style.backgroundColor = color;
         amount.innerHTML = `${current} ppm`;
     }
 }
 
 function update(myRoom, now) {
+
+    // Check if the incoming data is not sync with the selector's value, then skip. (not worked)
+    if (myRoom.roomName != roomSelector.value) return;
+    // Show the warning box if room is in danger (higher than >> unhealthy)
+    if (now.quality.title == 'Unhealthy' || now.quality.title == 'Danger') warning.style.visibility = 'visible';
+    else warning.style.visibility = 'hidden';
+
+
     document.getElementById("greeting").innerHTML = `Hi, ${myRoom.roomOwner}`;
 
     roomElement.innerHTML = `${myRoom.roomName}`;
@@ -143,6 +159,7 @@ function update(myRoom, now) {
     updateChart(ch4Chart, ch4Amount, now.CH4, myRoom.warningLevel.CH4, 'rgb(232, 178, 0)');
     updateChart(h2Chart, h2Amount, now.H2, myRoom.warningLevel.H2, 'rgb(0, 255, 145)');
 }
+
 
 function getData(info) {
     loadAirQuality();
