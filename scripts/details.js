@@ -1,6 +1,5 @@
 const roomSelector = document.getElementById("room-selector");
 const warning      = document.getElementById('warning');
-var airQuality;
 
 const Room = class {
     constructor(roomName, roomOwner, warningLevel, autoClimatize) {
@@ -50,6 +49,8 @@ const AirQuality = {
         "descriptionColor": "rgb(242, 182, 184)",
     }
 }
+
+var airQuality = AirQuality.good;
 
 function setAirQuality(quality) {
     switch (quality) {

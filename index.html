@@ -129,7 +129,7 @@
                         </table>
                     </div>
                     <br>
-                    <a onclick="linkTo('./index.html')" class="link">see more datails</a>
+                    <a onclick="linkTo('./details.html')" class="link">see more datails</a>
                 </td>
             </tr>
         </table>
@@ -143,10 +143,10 @@
                 <td style="width: 20%;">
                     <p style="font-weight: lighter; color: rgb(48, 48, 48);">Your window</p>
                     <p style="font-weight: lighter; color: rgb(48, 48, 48); font-size: 70%;">now: <span
-                            id="window-status" class="window-status">on</span></p>
+                            id="window-status" class="window-status"></span></p>
                 </td>
                 <td style="width: 80%;">
-                    <button class="window-on-off-button">Turn on your window</button>
+                    <button onclick="setWindow()" class="window-on-off-button">Turn on your window</button>
                 </td>
             </tr>
         </table>
