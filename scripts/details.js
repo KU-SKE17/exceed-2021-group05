@@ -2,21 +2,6 @@ const roomSelector = document.getElementById("room-selector");
 const warning      = document.getElementById('warning');
 var airQuality;
 
-function loadRoomSelector() {
-    var url = "http://158.108.182.6:3000/find_all";
-    fetch(url, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    })
-        .then((response) => response.json())
-        .then((datas) =>
-            datas.result.forEach((data) => {
-                roomSelector.innerHTML += "\n<option value=\"" + data.room + "\">" + data.room + "</option>"
-            })
-        );
-}
-//loadRoomSelector();
-
 const Room = class {
     constructor(roomName, roomOwner, warningLevel, autoClimatize) {
         this.roomName = roomName;
@@ -66,14 +51,6 @@ const AirQuality = {
     }
 }
 
-// function resetAirQuality() {
-//     document.getElementById('air-quality').innerHTML = 'Just a sec';
-//     document.getElementById('air-quality-box').style.backgroundColor = 'rgb(4, 169, 207)';
-//     document.getElementById('air-quality-description').innerHTML = 'We are getting your data';
-//     document.getElementById('air-quality-description-box').style.backgroundColor = 'rgb(220, 242, 250)';
-// }
-var airQuality;
-
 function setAirQuality(quality) {
     switch (quality) {
         case "good":
@@ -120,8 +97,8 @@ const ch4Amount = document.getElementById('ch4-amount');
 const h2Chart = document.getElementById('h2-chart');
 const h2Amount = document.getElementById('h2-amount');
 
-function updateChart(chart, amount, current, warning, color) {
-    if (current > warning) {
+function updateChart(chart, amount, current, warningAmount, color) {
+    if (current > warningAmount) {
         // color red (crimson)
         chart.style.width = `100%`;
         chart.style.backgroundColor = 'crimson';
@@ -142,18 +119,9 @@ function update(myRoom, now) {
     if (now.quality.title == 'Unhealthy' || now.quality.title == 'Danger') warning.style.visibility = 'visible';
     else warning.style.visibility = 'hidden';
 
-
-    document.getElementById("greeting").innerHTML = `Hi, ${myRoom.roomOwner}`;
-
     roomElement.innerHTML = `${myRoom.roomName}`;
     tempElement.innerHTML = `${now.temp}°C`;
     humElement.innerHTML = `${now.humidity}%`;
-
-    // This is only for index.html !!!
-    // document.getElementById('air-quality').innerHTML = now.quality.title;
-    // document.getElementById('air-quality-box').style.backgroundColor = now.quality.titleColor;
-    // document.getElementById('air-quality-description').innerHTML = now.quality.description;
-    // document.getElementById('air-quality-description-box').style.backgroundColor = now.quality.descriptionColor;
 
     // This is only for details.html
     document.getElementById('quality').style.color = now.quality.titleColor;
@@ -163,7 +131,6 @@ function update(myRoom, now) {
     updateChart(ch4Chart, ch4Amount, now.CH4, myRoom.warningLevel.CH4, 'rgb(232, 178, 0)');
     updateChart(h2Chart, h2Amount, now.H2, myRoom.warningLevel.H2, 'rgb(0, 255, 145)');
 }
-
 
 function getData(info) {
     loadAirQuality();
@@ -221,5 +188,3 @@ function reset() {
     document.getElementById('ch4-chart').style.width = '60%';
     document.getElementById('lpg-chart').style.width = '60%';
 }
-
-document.getElementById('trash').style.display = "none";
