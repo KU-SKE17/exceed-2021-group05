@@ -86,27 +86,27 @@ var arr_CO2 = [], arr_CO2_index = 0;
 var arr_CH4 = [], arr_CH4_index = 0;
 var arr_H2 = [], arr_H2_index = 0;
 
-var room_id = "bedroom";
-var url = "http://158.108.182.6:3000/find?room=".concat(room_id);
-fetch
-    (url, { method: "GET", headers: { "Content-Type": "application/json" }, })
-    .then((response) => response.json())
-    .then((datas) => daatas.result.forEach((dta) => {
-        arr_LPG_raw = data.lpg_history,
-            arr_CO2_raw = data.co_history,
-            arr_CH4_raw = data.ch4_history,
-            arr_H2_raw = data.h2_history
-        console.log(arr_LPG_raw);
-    })
-    );
+// var room_id = "bedroom";
+// var url = "http://158.108.182.6:3000/find?room=".concat(room_id);
+// fetch
+//     (url, { method: "GET", headers: { "Content-Type": "application/json" }, })
+//     .then((response) => response.json())
+//     .then((datas) => daatas.result.forEach((dta) => {
+//         arr_LPG_raw = data.lpg_history,
+//             arr_CO2_raw = data.co_history,
+//             arr_CH4_raw = data.ch4_history,
+//             arr_H2_raw = data.h2_history
+//         console.log(arr_LPG_raw);
+//     })
+//     );
 
-console.log(arr_LPG_raw);
+// console.log(arr_LPG_raw);
 
-// initial value
-var y_LPG_value = arr_LPG_raw[arr_LPG_raw.length - 1];
-var y_CO2_value = arr_CO2_raw[arr_CO2_raw.length - 1];
-var y_CH4_value = arr_CH4_raw[arr_CH4_raw.length - 1];
-var y_H2_value = arr_H2_raw[arr_H2_raw.length - 1];
+// // initial value
+// var y_LPG_value = arr_LPG_raw[arr_LPG_raw.length - 1];
+// var y_CO2_value = arr_CO2_raw[arr_CO2_raw.length - 1];
+// var y_CH4_value = arr_CH4_raw[arr_CH4_raw.length - 1];
+// var y_H2_value = arr_H2_raw[arr_H2_raw.length - 1];
 
 //update time 1 sec
 var updateInterval = 1000;
