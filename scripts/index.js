@@ -1,4 +1,5 @@
 const roomSelector = document.getElementById("room-selector");
+var airQuality;
 
 function loadRoomSelector() {
     var url = "http://158.108.182.6:3000/find_all";
@@ -64,17 +65,35 @@ const AirQuality = {
     }
 }
 
-function selectAirQuality(quality) {
-    switch (where) {
+function setAirQuality(quality) {
+    switch (quality) {
         case "good":
-            return AirQuality.good;
+            airQuality = AirQuality.good;
+            break
         case "moderate":
-            return AirQuality.moderate;
+            airQuality = AirQuality.moderate;
+            break
         case "unhealthy":
-            return AirQuality.unhealthy;
+            airQuality = AirQuality.unhealthy;
+            break
         case "danger":
-            return AirQuality.danger;
+            airQuality = AirQuality.danger;
+            break
     }
+}
+
+function loadAirQuality() {
+    var room_id = roomSelector.value;
+    var url = "http://158.108.182.6:3000/find_quality?room=".concat(room_id);
+    fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            setAirQuality(data.quality);
+        }
+        );
 }
 
 const roomElement = document.getElementById('room-name');
@@ -126,6 +145,8 @@ function update(myRoom, now) {
 }
 
 function getData(info) {
+    loadAirQuality();
+
     var myRoom = new Room(info.room, info.room_owner, {
         "LPG": info.lpg_warning,
         "CO": info.co_warning,
@@ -135,8 +156,7 @@ function getData(info) {
 
     var now = new Now(
         info.timestamp * 1000,
-        // selectAirQuality(info.quality),
-        AirQuality.moderate,
+        airQuality,
         info.temperature,
         info.lpg_history[info.lpg_history.length - 1],
         info.co_history[info.co_history.length - 1],
