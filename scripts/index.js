@@ -102,7 +102,7 @@ function updateSwitch(new_status) {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            "result": new_status,
+            "switch": new_status,
         }),
     }).then((response) => response.json())
 }
