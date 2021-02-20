@@ -1,21 +1,5 @@
 const roomSelector = document.getElementById("room-selector");
 
-function loadRoomSelector() {
-    var url = "http://158.108.182.6:3000/find_all";
-    fetch(url, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-    })
-        .then((response) => response.json())
-        .then((datas) =>
-            datas.result.forEach((data) => {
-                roomSelector.innerHTML += "\n<option value=\"" + data.room + "\">" + data.room + "</option>"
-            })
-        );
-        
-}
-loadRoomSelector();
-
 //init var
 var dps_LPG = [];
 var dps_CO2 = [];
