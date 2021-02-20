@@ -51,10 +51,10 @@ function updateSetting(room) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             "room_owner": setting_owner.value,
-            "lpg_warning": setting_LPG.value,
-            "co_warning": setting_CO.value,
-            "ch4_warning": setting_CH4.value,
-            "h2_warning": setting_H2.value,
+            "lpg_warning": Number(setting_LPG.value),
+            "co_warning": Number(setting_CO.value),
+            "ch4_warning": Number(setting_CH4.value),
+            "h2_warning": Number(setting_H2.value),
         }),
     }).then((response) => response.json())
 }
