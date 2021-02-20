@@ -121,8 +121,8 @@ function getData(info)
 
 function loadData() 
 {
-    //var room_id = roomSelector.value;
-    var room_id = "living_room";
+    var room_id = roomSelector.value;
+    //var room_id = "living_room";
     var url = "http://158.108.182.6:3000/find?room=".concat(room_id);
     fetch
     (url, {method: "GET", headers: { "Content-Type": "application/json" }})
