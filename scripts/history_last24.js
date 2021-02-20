@@ -16,6 +16,11 @@ var co2_ct = 1;
 var ch4_ct = 1;
 var h2_ct = 1;
 
+var newest_lpg;
+var newest_co2;
+var newest_ch4;
+var newest_h2;
+
 var arr_LPG = [], arr_LPG_index = 0;
 var arr_CO2 = [], arr_CO2_index = 0;
 var arr_CH4 = [], arr_CH4_index = 0;
@@ -25,7 +30,7 @@ var arr_H2 = [], arr_H2_index = 0;
 var chart = new CanvasJS.Chart("chartContainer", {
     zoomEnabled: true,
     title: { text: "air quality" },
-    axisX: { title: "Demo chart updates every 1 month" },
+    axisX: { title: "Demo chart updates every 1 sec" },
     axisY: { posfix: "ppm" },
     toolTip: { shared: true },
     legend: { cursor: "pointer", verticalAlign: "top", fontSize: 22, fontColor: "dimGrey", itemclick: toggleDataSeries },
@@ -35,7 +40,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
                 type: "line",
                 xValueType: "dateTime",
                 yValueFormatString: "####.00 (ppm)",
-                xValueFormatString: "MM/YYYY",
+                xValueFormatString: "hh:mm:ss TT",
                 showInLegend: true,
                 name: "LPG",
                 dataPoints: dps_LPG
@@ -80,7 +85,7 @@ var updateInterval = 1000;
 var time = new Date();
 var now = time.getHours();
 //round
-var index_to_day = 2592000;
+var index_to_day = 1;
 
 //add dps func
 function add_new(arr_temp, arr_index, yValue, dps_arr, check_time, ct) 
@@ -88,7 +93,7 @@ function add_new(arr_temp, arr_index, yValue, dps_arr, check_time, ct)
     var temp = 0;
 
     arr_temp.push(yValue);
-    for (var i = arr_index; i < arr_temp.length; i++) temp += arr_temp[i];
+    for (var i = arr_index-1; i < arr_temp.length; i++) temp += arr_temp[i];
     temp /= (arr_temp.length - arr_index + 1);
 
     //if(check_time == 1) console.log(temp)
@@ -180,6 +185,14 @@ function updateChart()
         chart.options.data[1].legendText = " CO2 " + newest_co2 + " (ppm)";
         chart.options.data[2].legendText = " CH4 " + newest_ch4 + " (ppm)";
         chart.options.data[3].legendText = " H2 " + newest_h2 + " (ppm)";
+
+        if(dps_LPG.length > 86400) 
+        {
+            dps_LPG.shift();
+            dps_CO2.shift();
+            dps_CH4.shift()
+            dps_H2.shift();
+        }
         chart.render();
     }
 }

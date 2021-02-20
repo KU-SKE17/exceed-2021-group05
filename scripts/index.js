@@ -72,6 +72,7 @@ const AirQuality = {
 //     document.getElementById('air-quality-description').innerHTML = 'We are getting your data';
 //     document.getElementById('air-quality-description-box').style.backgroundColor = 'rgb(220, 242, 250)';
 // }
+var airQuality;
 
 function setAirQuality(quality) {
     switch (quality) {
@@ -100,8 +101,7 @@ function loadAirQuality() {
         .then((response) => response.json())
         .then((data) => {
             setAirQuality(data.quality);
-        }
-        );
+        });
 }
 
 const roomElement = document.getElementById('room-name');
