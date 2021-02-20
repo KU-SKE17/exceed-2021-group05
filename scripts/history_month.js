@@ -145,14 +145,11 @@ function updateChart()
     //use old data
     if(settt == 0 && arr_LPG_raw.length != 0)
     {
-        console.log(arr_LPG_raw);
-        console.log(arr_CO2_raw);
-        console.log(arr_CH4_raw);
-        console.log(arr_H2_raw);
         settt++;
         for (var i = 0; i < arr_LPG_raw.length; i++) 
         {
             update_ct_index();
+            time.setTime(time.getTime() - (arr_LPG_raw.length*1000));
             newest_lpg = add_new(arr_LPG, arr_LPG_index, arr_LPG_raw[i], dps_LPG, 0, lpg_ct);
             newest_co2 = add_new(arr_CO2, arr_CO2_index, arr_CO2_raw[i], dps_CO2, 0, co2_ct);
             newest_ch4 = add_new(arr_CH4, arr_CH4_index, arr_CH4_raw[i], dps_CH4, 0, ch4_ct);
@@ -176,10 +173,10 @@ function updateChart()
         newest_h2 = add_new(arr_H2, arr_H2_index, y_H2_value, dps_H2, 1, h2_ct);
 
         // updating legend text with  updated with y Value 
-        chart.options.data[0].legendText = " LPG " + newest_lpg + " (ppm)";
-        chart.options.data[1].legendText = " CO2 " + newest_co2 + " (ppm)";
-        chart.options.data[2].legendText = " CH4 " + newest_ch4 + " (ppm)";
-        chart.options.data[3].legendText = " H2 " + newest_h2 + " (ppm)";
+        chart.options.data[0].legendText = " LPG " + newest_lpg.toFixed(2) + " (ppm)";
+        chart.options.data[1].legendText = " CO2 " + newest_co2.toFixed(2) + " (ppm)";
+        chart.options.data[2].legendText = " CH4 " + newest_ch4.toFixed(2) + " (ppm)";
+        chart.options.data[3].legendText = " H2 " + newest_h2.toFixed(2) + " (ppm)";
         chart.render();
     }
 }
