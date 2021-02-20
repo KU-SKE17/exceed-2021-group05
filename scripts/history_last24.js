@@ -1,5 +1,4 @@
 const roomSelector = document.getElementById("room-selector");
-
 //init var
 var dps_LPG = [];
 var dps_CO2 = [];
@@ -194,5 +193,6 @@ function updateChart()
     }
 }
 // generates first set of dataPoints 
+
 updateChart();
 setInterval(function () { updateChart() }, updateInterval);
