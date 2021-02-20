@@ -50,7 +50,7 @@ const AirQuality = {
     }
 }
 
-var airQuality = AirQuality.good;
+//var airQuality = AirQuality.good;
 
 function setAirQuality(quality) {
     switch (quality) {

@@ -50,8 +50,8 @@ const AirQuality = {
         "descriptionColor": "rgb(242, 182, 184)",
     }
 }
-
-var airQuality = AirQuality.good;
+// We don't need it rightnow
+//var airQuality = AirQuality.good;
 
 function setAirQuality(quality) {
     switch (quality) {
