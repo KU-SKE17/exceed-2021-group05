@@ -117,7 +117,7 @@ window.onload = function () {
     fetch
     (url, {method: "GET",headers: { "Content-Type": "application/json" },})
         .then((response) => response.json())
-        .then((datas) =>datas.result.forEach((data) => 
+        .then((datas) =>daatas.result.forEach((dta) => 
         {
                 arr_LPG_raw = data.lpg_history,
                 arr_CO2_raw = data.co_history,
@@ -155,7 +155,8 @@ window.onload = function () {
         })
         .then((response) => response.json())
         .then((datas) =>
-            datas.result.forEach((data) => {
+            datas.result.forEach((data) => 
+            {
                 arr_LPG_raw = data.lpg_history,
                 arr_CO2_raw = data.co_history,
                 arr_CH4_raw = data.ch4_history,
