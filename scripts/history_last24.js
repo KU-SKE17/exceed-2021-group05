@@ -195,6 +195,13 @@ function updateChart()
         chart.options.data[1].legendText = " CO2 " + dps_CO2[dps_CO2.length - 1] + " (ppm)";
         chart.options.data[2].legendText = " CH4 " + dps_CH4[dps_CH4.length - 1] + " (ppm)";
         chart.options.data[3].legendText = " H2 " + dps_H2[dps_H2.length - 1] + " (ppm)";
+        if(dps_LPG.length > 86400) 
+        {
+            dps_LPG.shift();
+            dps_CO2.shift();
+            dps_CH4.shift()
+            dps_H2.shift();
+        }
         chart.render();
     }
 }
