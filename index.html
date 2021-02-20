@@ -75,7 +75,8 @@
 
     <br><br><br><br>
     <div style="text-align: center; width: 100%;">
-        <div class="warning" id="warning">Your room is not suitable for living, we recommend you to leave or climatize the room.</div>
+        <div class="warning" id="warning">Your room is not suitable for living, we recommend you to leave or climatize
+            the room.</div>
     </div>
     <br><br>
 
@@ -136,7 +137,21 @@
     <button class="demo-btn" onclick="changeWidth()">animate</button>
     <button class="demo-btn" onclick="reset()">reset</button>
 
-    <button class="save">Open window here</button>
+    <div class="device-display-bg">
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 20%;">
+                    <p style="font-weight: lighter; color: rgb(48, 48, 48);">Your window</p>
+                    <p style="font-weight: lighter; color: rgb(48, 48, 48); font-size: 70%;">now: <span
+                            id="window-status" class="window-status">on</span></p>
+                </td>
+                <td style="width: 80%;">
+                    <button class="window-on-off-button">Turn on your window</button>
+                </td>
+            </tr>
+        </table>
+
+    </div>
 
     <!-- trash -->
     <div id="trash">
