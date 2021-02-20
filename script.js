@@ -146,7 +146,7 @@ location.href = './setting.html';
 
 
 
-// Functions for index.html //
+// Functions for home.html //
 
 function update(myRoom,now) {
 
