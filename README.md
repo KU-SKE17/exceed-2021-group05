@@ -4,9 +4,11 @@ Exceed project (group 5)
 
 ## Repository description
 
-- directory `./script`: contains scripts for all HTML files.
-- directory `./photo`: contains photos of group members.
-- `back_end.py`: contains backend code
+- directory `frontend/`: contains frontend code.
+  - directory `./scripts/`: contains scripts for all HTML files.
+  - directory `./photo/`: contains photos of group members.
+  - directory `./css/`: contains stylesheets.
+- `backend/back_end.py`: contains backend code.
 
 ## Installation
 
@@ -18,7 +20,7 @@ cd exceed-2021-group05/
 ### Back-end
 
 ```
-python3 back_end.py
+python3 backend/back_end.py
 ```
 
 ### Front-end
@@ -44,4 +46,4 @@ npm install http-server -g http-server
 - GET sensor value (for front-end) สำหรับการแสดงผลที่
 - GET sensor value (for hardware) สำหรับการเปิดหน้าต่าง
 - Trigger function to line notify
-- เมื่อค่าเกินค่าที่กำหนดจะสั่งhardwareให้เปิดหน้าต่างอัตโนมัติได้Î
+- เมื่อค่าเกินค่าที่กำหนดจะสั่งhardwareให้เปิดหน้าต่างอัตโนมัติได้
