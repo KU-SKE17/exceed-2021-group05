@@ -107,7 +107,7 @@ function setTextWindowStatus(boo) {
         windowStatus.innerHTML = 'On';
         windowStatus.style.color = 'rgb(8, 194, 150)';
         toggleWindow.innerHTML = 'Close window';
-        
+
     }
     else {
         windowStatus.innerHTML = 'Off';
@@ -149,6 +149,8 @@ const coChart = document.getElementById('co-chart');
 const ch4Chart = document.getElementById('ch4-chart')
 const h2Chart = document.getElementById('h2-chart');
 
+var allGas;
+
 function updateChart(chart, current, warningAmount, color) {
     if (current > warningAmount) {
         // color red (crimson)
@@ -156,7 +158,7 @@ function updateChart(chart, current, warningAmount, color) {
         chart.style.backgroundColor = 'crimson';
     }
     else {
-        chart.style.width = `${current}%`;
+        chart.style.width = `${(current / allGas) * 100}%`;
         chart.style.backgroundColor = color;
     }
 }
@@ -179,6 +181,7 @@ function update(myRoom, now) {
     document.getElementById('air-quality-description').innerHTML = now.quality.description;
     document.getElementById('air-quality-description-box').style.backgroundColor = now.quality.descriptionColor;
 
+    allGas = now.LPG + now.CO + now.CH4 + now.H2;
     updateChart(lpgChart, now.LPG, myRoom.warningLevel.LPG, 'rgb(17, 200, 237)');
     updateChart(coChart, now.CO, myRoom.warningLevel.CO, 'rgb(242, 2, 78)');
     updateChart(ch4Chart, now.CH4, myRoom.warningLevel.CH4, 'rgb(232, 178, 0)');

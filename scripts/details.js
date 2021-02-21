@@ -1,5 +1,5 @@
 const roomSelector = document.getElementById("room-selector");
-const warning      = document.getElementById('warning');
+const warning = document.getElementById('warning');
 
 const Room = class {
     constructor(roomName, roomOwner, warningLevel, autoClimatize) {
@@ -24,7 +24,7 @@ const Now = class {
 }
 
 const AirQuality = {
-    "good":  {
+    "good": {
         "title": "Good",
         "description": "Overall air quality in you room is good.",
         "titleColor": "rgb(0, 197, 168)",       // green
@@ -98,6 +98,8 @@ const ch4Amount = document.getElementById('ch4-amount');
 const h2Chart = document.getElementById('h2-chart');
 const h2Amount = document.getElementById('h2-amount');
 
+var allGas;
+
 function updateChart(chart, amount, current, warningAmount, color) {
     if (current > warningAmount) {
         // color red (crimson)
@@ -106,7 +108,7 @@ function updateChart(chart, amount, current, warningAmount, color) {
         amount.innerHTML = `${current} ppm (Danger!)`;
     }
     else {
-        chart.style.width = `${current}%`;
+        chart.style.width = `${(current / allGas) * 100}%`;
         chart.style.backgroundColor = color;
         amount.innerHTML = `${current} ppm`;
     }
@@ -127,6 +129,8 @@ function update(myRoom, now) {
     // This is only for details.html
     document.getElementById('quality').style.color = now.quality.titleColor;
     document.getElementById('quality').innerHTML = now.quality.title;
+
+    allGas = now.LPG + now.CO + now.CH4 + now.H2;
     updateChart(lpgChart, lpgAmount, now.LPG, myRoom.warningLevel.LPG, 'rgb(17, 200, 237)');
     updateChart(coChart, coAmount, now.CO, myRoom.warningLevel.CO, 'rgb(242, 2, 78)');
     updateChart(ch4Chart, ch4Amount, now.CH4, myRoom.warningLevel.CH4, 'rgb(232, 178, 0)');
