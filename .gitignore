@@ -116,10 +116,6 @@ $RECYCLE.BIN/
 *.css.map
 
 
-### Less ###
-*.css
-
-
 ### grunt ###
 # Grunt usually compiles files inside this directory
 dist/
@@ -150,5 +146,5 @@ sftp-config.json
 .settings/
 .vscode/
 
-script.js
+# script.js
 .DS_Store
