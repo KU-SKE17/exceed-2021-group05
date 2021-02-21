@@ -151,3 +151,4 @@ sftp-config.json
 .vscode/
 
 script.js
+.DS_Store

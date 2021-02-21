@@ -97,7 +97,6 @@ function loadWindowStatus() {
 }
 
 function setTextWindowStatus(boo) {
-    console.log(document.getElementById('air-quality').innerHTML);
     if (boo && document.getElementById('air-quality').innerHTML == 'Danger') {
         windowStatus.innerHTML = 'On';
         windowStatus.style.color = 'rgb(8, 194, 150)';
