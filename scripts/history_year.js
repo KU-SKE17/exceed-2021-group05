@@ -80,7 +80,7 @@ var updateInterval = 1000;
 var time = new Date();
 var now = time.getHours();
 //round
-var index_to_day = 31536000;
+var index_to_day = 12*30*86400;
 
 //add dps func
 function add_new(arr_temp, arr_index, yValue, dps_arr, check_time, ct) 
