@@ -146,10 +146,10 @@ function updateChart()
     if(settt == 0 && arr_LPG_raw.length != 0)
     {
         settt++;
+        time.setTime(time.getTime() - (arr_LPG_raw.length*1000));
         for (var i = 0; i < arr_LPG_raw.length; i++) 
         {
             update_ct_index();
-            time.setTime(time.getTime() - (arr_LPG_raw.length*1000));
             newest_lpg = add_new(arr_LPG, arr_LPG_index, arr_LPG_raw[i], dps_LPG, 0, lpg_ct);
             newest_co2 = add_new(arr_CO2, arr_CO2_index, arr_CO2_raw[i], dps_CO2, 0, co2_ct);
             newest_ch4 = add_new(arr_CH4, arr_CH4_index, arr_CH4_raw[i], dps_CH4, 0, ch4_ct);
