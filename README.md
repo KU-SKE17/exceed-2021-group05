@@ -9,6 +9,7 @@ Exceed project (group 5)
   - directory `./photo/`: contains photos of group members.
   - directory `./css/`: contains stylesheets.
 - `backend/back_end.py`: contains backend code.
+- `hardware/iot_code.ino`: contains hardware code.
 
 ## Installation
 
